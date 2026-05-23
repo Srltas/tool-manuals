@@ -1,0 +1,151 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Detect which manual(s) changed
+  # ---------------------------------------------------------------------------
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      manuals: ${{ steps.set-matrix.outputs.manuals }}
+      has-changes: ${{ steps.set-matrix.outputs.has-changes }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            ca-manual:
+              - 'ca-manual/**'
+            cmt-manual:
+              - 'cmt-manual/**'
+            shared:
+              - 'requirements.txt'
+              - 'shared_conf.py'
+              - 'Makefile'
+              - '.github/workflows/**'
+
+      - name: Compute build matrix
+        id: set-matrix
+        run: |
+          manuals=()
+          if [[ "${{ steps.filter.outputs.shared }}" == "true" ]]; then
+            manuals=(ca-manual cmt-manual)
+          else
+            [[ "${{ steps.filter.outputs.ca-manual }}" == "true" ]] && manuals+=(ca-manual)
+            [[ "${{ steps.filter.outputs.cmt-manual }}" == "true" ]] && manuals+=(cmt-manual)
+          fi
+          if [[ ${#manuals[@]} -eq 0 ]]; then
+            echo "has-changes=false" >> "$GITHUB_OUTPUT"
+            echo "manuals=[]" >> "$GITHUB_OUTPUT"
+          else
+            echo "has-changes=true" >> "$GITHUB_OUTPUT"
+            json=$(printf '"%s",' "${manuals[@]}" | sed 's/,$//')
+            echo "manuals=[$json]" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ---------------------------------------------------------------------------
+  # Build only the affected manual(s)
+  # ---------------------------------------------------------------------------
+  build:
+    needs: detect
+    if: needs.detect.outputs.has-changes == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        manual: ${{ fromJson(needs.detect.outputs.manuals) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libgdk-pixbuf-2.0-0
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build HTML
+        run: make ${{ matrix.manual }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ matrix.manual }}
+          path: ${{ matrix.manual }}/_build/html
+          retention-days: 1
+
+  # ---------------------------------------------------------------------------
+  # Deploy each built manual to gh-pages under pr-preview/<PR#>/<manual>/
+  # ---------------------------------------------------------------------------
+  deploy:
+    needs: [detect, build]
+    if: needs.detect.outputs.has-changes == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: gh-pages-deploy
+      cancel-in-progress: false
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        manual: ${{ fromJson(needs.detect.outputs.manuals) }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: preview-${{ matrix.manual }}
+          path: ./dist
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          destination_dir: pr-preview/${{ github.event.pull_request.number }}/${{ matrix.manual }}
+          keep_files: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy preview for PR #${{ github.event.pull_request.number }} (${{ matrix.manual }})'
+
+  # ---------------------------------------------------------------------------
+  # Post or update PR comment with preview links
+  # ---------------------------------------------------------------------------
+  comment:
+    needs: [detect, deploy]
+    if: success()
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: thollander/actions-comment-pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_number: ${{ github.event.pull_request.number }}
+          comment_tag: tool-manual-preview
+          mode: recreate
+          message: |
+            ✅ **Manual Preview is Ready!**
+
+            | Manual | Web |
+            | :--- | :--- |
+            ${{ contains(needs.detect.outputs.manuals, 'ca-manual') && format('| CUBRID Admin | [View](https://{0}.github.io/{1}/pr-preview/{2}/ca-manual/ca/index.html) |', github.repository_owner, github.event.repository.name, github.event.pull_request.number) || '' }}
+            ${{ contains(needs.detect.outputs.manuals, 'cmt-manual') && format('| CUBRID Migration Toolkit | [View](https://{0}.github.io/{1}/pr-preview/{2}/cmt-manual/cmt/index.html) |', github.repository_owner, github.event.repository.name, github.event.pull_request.number) || '' }}
