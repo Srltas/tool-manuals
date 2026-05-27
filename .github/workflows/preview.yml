@@ -1,0 +1,107 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [develop]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to publish under pr-preview/<number>
+        required: true
+      ref:
+        description: Branch, tag, or SHA to build
+        required: true
+        default: CUBRIDMAN-336
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.inputs.pr_number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        manual: [ca-manual, cmt-manual]
+    steps:
+      - uses: actions/checkout@v4
+        if: github.event_name == 'pull_request'
+
+      - uses: actions/checkout@v4
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          ref: ${{ github.event.inputs.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libgdk-pixbuf-2.0-0
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build HTML
+        run: make ${{ matrix.manual }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ matrix.manual }}
+          path: ${{ matrix.manual }}/_build/html
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        manual: [ca-manual, cmt-manual]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: preview-${{ matrix.manual }}
+          path: ./dist
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          destination_dir: pr-preview/${{ github.event.pull_request.number || github.event.inputs.pr_number }}/${{ matrix.manual }}
+          keep_files: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: Deploy preview for PR #${{ github.event.pull_request.number || github.event.inputs.pr_number }} (${{ matrix.manual }})
+
+  comment:
+    needs: deploy
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: thollander/actions-comment-pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_number: ${{ github.event.pull_request.number }}
+          comment_tag: tool-manual-preview
+          mode: recreate
+          message: |
+            Manual preview is ready.
+
+            | Manual | Web |
+            | :--- | :--- |
+            | CUBRID Admin | [View](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/${{ github.event.pull_request.number }}/ca-manual/ca/index.html) |
+            | CUBRID Migration Toolkit | [View](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/${{ github.event.pull_request.number }}/cmt-manual/cmt/index.html) |
