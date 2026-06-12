@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html :class="{ 'dark' : darkMode === true }" data-content_root="./" lang="ko" x-data="{ darkMode: $persist(window.matchMedia('(prefers-color-scheme: dark)').matches), activeSection: ''}">
+<head>
+<script>
+    (function () {
+      // Set initial color scheme
+      if ((localStorage.getItem("_x_darkMode") === "true") || (window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.classList.add("dark");
+      }
+
+      // Watch for media preference changes
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+        localStorage.setItem("_x_darkMode", event.matches);
+        document.documentElement.classList.toggle("dark", event.matches);
+      });
+    })();
+  </script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#030711" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>마이그레이션 보고서 &amp; 출력 파일 | CUBRID Migration Toolkit 12.0.0 Documentation</title>
+<meta content="마이그레이션 보고서 &amp; 출력 파일 | CUBRID Migration Toolkit 12.0.0 Documentation" property="og:title"/>
+<meta content="마이그레이션 보고서 &amp; 출력 파일 | CUBRID Migration Toolkit 12.0.0 Documentation" name="twitter:title"/>
+<link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
+<link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
+<link href="_static/logo_only.png" rel="icon"/>
+<link href="search.html" rel="search" title="검색"/>
+<link href="genindex.html" rel="index" title="색인"/>
+<link href="11_config.html" rel="next" title="환경 설정"/>
+<link href="09_console.html" rel="prev" title="콘솔(CLI) 가이드"/>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" @scroll.window="showScrollTop = pageYOffset &gt; 100" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-xs border-border bg-background/90 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="index.html">
+<img alt="Logo" class="mr-2 hidden dark:block" height="24" src="_static/logo.svg" width="24"/>
+<img alt="Logo" class="mr-2 dark:hidden" height="24" src="_static/logo.svg" width="24"/><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">CUBRID Migration Toolkit 12.0.0 Documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 gap-2 sm:gap-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.ctrl.prevent="$refs.search.focus()" @keydown.k.window.meta.prevent="$refs.search.focus()" action="search.html" class="relative flex items-center group" id="searchbox" method="get" x-data="{ isMac: /Mac|iPhone|iPod|iPad/i.test(navigator.platform || navigator.userAgent) }">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs" x-text="isMac ? '⌘' : 'Ctrl'">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<nav class="flex items-center gap-1">
+<a href="https://github.com/CUBRID/cubrid-migration" rel="noopener nofollow" title="Visit GitHub">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9"><svg fill="currentColor" height="26px" style="margin-top:-2px;display:inline" viewbox="0 0 45 44" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M22.477.927C10.485.927.76 10.65.76 22.647c0 9.596 6.223 17.736 14.853 20.608 1.087.2 1.483-.47 1.483-1.047 0-.516-.019-1.881-.03-3.693-6.04 1.312-7.315-2.912-7.315-2.912-.988-2.51-2.412-3.178-2.412-3.178-1.972-1.346.149-1.32.149-1.32 2.18.154 3.327 2.24 3.327 2.24 1.937 3.318 5.084 2.36 6.321 1.803.197-1.403.759-2.36 1.379-2.903-4.823-.548-9.894-2.412-9.894-10.734 0-2.37.847-4.31 2.236-5.828-.224-.55-.969-2.759.214-5.748 0 0 1.822-.584 5.972 2.226 1.732-.482 3.59-.722 5.437-.732 1.845.01 3.703.25 5.437.732 4.147-2.81 5.967-2.226 5.967-2.226 1.185 2.99.44 5.198.217 5.748 1.392 1.517 2.232 3.457 2.232 5.828 0 8.344-5.078 10.18-9.916 10.717.779.67 1.474 1.996 1.474 4.021 0 2.904-.027 5.247-.027 5.96 0 .58.392 1.256 1.493 1.044C37.981 40.375 44.2 32.24 44.2 22.647c0-11.996-9.726-21.72-21.722-21.72" fill="currentColor" fill-rule="evenodd"></path></svg></div>
+</div>
+</a>
+<button @click="darkMode = !darkMode" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" title="Toggle color scheme" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="16" viewbox="0 96 960 960" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="16" viewbox="0 96 960 960" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="justify-start text-sm md:!hidden bg-background" href="index.html">
+<img alt="Logo" class="mr-2 hidden dark:block" height="16" src="_static/logo.svg" width="16"/>
+<img alt="Logo" class="mr-2 dark:hidden" height="16" src="_static/logo.svg" width="16"/><span class="font-bold text-clip whitespace-nowrap">CUBRID Migration Toolkit 12.0.0 Documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<p class="caption" role="heading"><span class="caption-text">사용 가이드</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">소개</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_install.html">설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_quickstart.html">빠른 시작</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_ui.html">GUI 둘러보기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">마이그레이션 보고서 &amp; 출력 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_advanced.html">고급 사용</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">부록</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix_typemap.html">부록 A. 데이터 타입 매핑</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="index.html">
+<span class="hidden md:inline">CUBRID Migration Toolkit 12.0.0 Documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">마이그레이션 보고서 &amp; 출력 파일</span>
+</nav>
+<div id="content" role="main">
+<section id="id1">
+<h1>마이그레이션 보고서 &amp; 출력 파일<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
+<p>본 챕터는 마이그레이션이 끝난 뒤 결과를 확인하는 방법을 다룬다. CMT는 모든 마이그레이션에 대해 보고서를 자동으로 생성한다. GUI에서는 탭으로 구성된 보고서 화면, 콘솔에서는 <code class="docutils literal notranslate"><span class="pre">report</span></code> 명령으로 동일한 내용을 확인할 수 있다. 보고서 / 로그 / 산출 파일이 워크스페이스의 어느 디렉토리에 저장되는지도 함께 정리한다.</p>
+<section id="gui">
+<h2>보고서 화면 (GUI)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#gui" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#gui'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<p>보고서 화면은 다음 두 경로에서 열린다.</p>
+<ul class="simple">
+<li><p>진행 화면 상단의 <strong>보고서 조회</strong> 버튼을 누른다.</p></li>
+<li><p><strong>마이그레이션 이력</strong> 뷰에서 완료된 항목을 더블클릭하거나 컨텍스트 메뉴의 <strong>보고서 열기</strong>를 선택한다.</p></li>
+</ul>
+<p>상단에는 툴바, 본문에는 6개의 탭이 좌에서 우 순서로 배치된다.</p>
+<img alt="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EB%A6%AC%ED%8F%AC%ED%8A%B8_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EB%A6%AC%ED%8F%AC%ED%8A%B8_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png"/>
+<section id="id2">
+<h3>툴바<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>상단 툴바에는 최대 세 개의 버튼이 있다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%"/>
+<col style="width: 70.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>버튼</p></th>
+<th class="head"><p>동작</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>모든 테이블을 엑셀 파일로 저장</strong></p></td>
+<td><p>디렉토리 선택 다이얼로그를 열고, 시작 시각 타임스탬프를 공통 접두사로 하는 4개 파일을 저장한다 (상세는 “보고서 저장” 항목)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>마이그레이션 재실행…</strong> (툴팁: <strong>마이그레이션 마법사 열기</strong>)</p></td>
+<td><p>동일한 설정으로 마법사를 다시 연다. 1단계부터 모든 입력이 채워진 상태에서 시작되므로, 객체 선택이나 매핑만 일부 조정해 재실행할 수 있다</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>파일 저장 폴더 열기</strong></p></td>
+<td><p>파일 출력 모드일 때만 표시된다. OS 파일 탐색기로 출력 디렉토리를 연다</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h3>탭 구성<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id3" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%"/>
+<col style="width: 76.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>탭</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>요약</strong></p></td>
+<td><p>시작 / 종료 시각, 총 소요 시간, 출력 디렉토리, 객체 종류별 카운트와 진행률 요약</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>상세</strong></p></td>
+<td><p>객체별 / 레코드별 상세. <strong>DB 객체</strong>와 <strong>이전 통계</strong> 두 개의 서브탭으로 구성</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>변경된 객체</strong></p></td>
+<td><p>마이그레이션 과정에서 이름이 바뀐 객체 목록</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>미지원 객체</strong></p></td>
+<td><p>변환에 실패하거나 대상 CUBRID에서 지원하지 않아 생략된 객체 목록</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>로그</strong></p></td>
+<td><p>마이그레이션 실행 로그 전체 텍스트</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>설정 정보</strong></p></td>
+<td><p>마법사 6단계 <strong>최종 확인</strong> 페이지에 표시되었던 설정 요약과 동일한 내용</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>요약 탭<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id4" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id4'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>상단 라벨 영역에는 다음이 표시된다.</p>
+<ul class="simple">
+<li><p><strong>시작 시간</strong> / <strong>종료 시간</strong> / <strong>총 소요 시간</strong> — 실행 구간과 소요 시간</p></li>
+<li><p><strong>출력 위치</strong> — 파일 출력 모드(CUBRID dump / SQL / CSV / XLS)일 때만 표시된다. 경로를 클릭하면 OS 파일 탐색기로 디렉토리가 열린다</p></li>
+</ul>
+<p>그 아래의 표는 객체 종류별 결과를 다섯 Column으로 보여 준다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%"/>
+<col style="width: 22.0%"/>
+<col style="width: 22.0%"/>
+<col style="width: 14.0%"/>
+<col style="width: 20.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>객체</p></th>
+<th class="head"><p>원본에서 추출 개수</p></th>
+<th class="head"><p>대상으로 입력 개수</p></th>
+<th class="head"><p>실패</p></th>
+<th class="head"><p>진행률</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>객체 종류</p></td>
+<td><p>원본에서 추출이 완료된 객체 / 행 수</p></td>
+<td><p>대상에 적재된 객체 / 행 수</p></td>
+<td><p>실패한 객체 / 행 수</p></td>
+<td><p>진행률 백분율</p></td>
+</tr>
+</tbody>
+</table>
+<p>행을 더블클릭하면 <strong>상세</strong> 탭으로 이동한다. 맨 아래의 <strong>record</strong> 행에서는 <strong>이전 통계</strong> 서브탭, 그 외 객체 종류에서는 <strong>DB 객체</strong> 서브탭이 열린다.</p>
+</section>
+<section id="db">
+<h3>상세 — DB 객체<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#db" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#db'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>객체별로 한 줄씩 처리 결과를 보여 준다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%"/>
+<col style="width: 18.0%"/>
+<col style="width: 26.0%"/>
+<col style="width: 24.0%"/>
+<col style="width: 18.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>상태</p></th>
+<th class="head"><p>유형</p></th>
+<th class="head"><p>이름</p></th>
+<th class="head"><p>DDL</p></th>
+<th class="head"><p>오류</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>처리 상태 (성공 / 실패 아이콘)</p></td>
+<td><p>객체 종류</p></td>
+<td><p>객체 이름</p></td>
+<td><p>대상에 생성된 DDL 텍스트</p></td>
+<td><p>실패 시 원인 메시지</p></td>
+</tr>
+</tbody>
+</table>
+<p>행을 더블클릭하면 <strong>DDL</strong>과 <strong>오류</strong> Column의 긴 텍스트가 별도 다이얼로그로 펼쳐져 한 화면에서 확인할 수 있다.</p>
+</section>
+<section id="id5">
+<h3>상세 — 이전 통계<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id5" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id5'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>Table별 데이터 적재 결과를 보여 준다. Column은 9개이다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%"/>
+<col style="width: 10.0%"/>
+<col style="width: 14.0%"/>
+<col style="width: 10.0%"/>
+<col style="width: 14.0%"/>
+<col style="width: 10.0%"/>
+<col style="width: 10.0%"/>
+<col style="width: 10.0%"/>
+<col style="width: 8.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>테이블 이름</p></th>
+<th class="head"><p>레코드 수</p></th>
+<th class="head"><p>원본에서 추출 개수</p></th>
+<th class="head"><p>추출 소요 시간</p></th>
+<th class="head"><p>대상으로 입력 개수</p></th>
+<th class="head"><p>입력 소요 시간</p></th>
+<th class="head"><p>완료</p></th>
+<th class="head"><p>총 소요 시간</p></th>
+<th class="head"><p>Owner</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>원본 Table 이름</p></td>
+<td><p>원본 총 행 수</p></td>
+<td><p>추출 완료 행 수</p></td>
+<td><p>추출 소요 시간</p></td>
+<td><p>적재 완료 행 수</p></td>
+<td><p>적재 소요 시간</p></td>
+<td><p>완료율 백분율</p></td>
+<td><p>추출 시작 ~ 적재 종료 총 경과</p></td>
+<td><p>원본 스키마(소유자) 이름</p></td>
+</tr>
+</tbody>
+</table>
+<p>행이 하나도 없는 Table은 카운트가 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 표시된다.</p>
+</section>
+<section id="id6">
+<h3>변경된 객체<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id6" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id6'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>마이그레이션 과정에서 이름이 바뀐 객체를 <strong>유형 / 원본 객체 / 대상 객체</strong> 세 Column으로 보여 준다. 원본과 다른 이름으로 마이그레이션된 객체를 한눈에 확인하는 용도이다.</p>
+</section>
+<section id="id7">
+<h3>미지원 객체<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id7" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id7'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>대상 CUBRID에 생성되지 못한 객체의 DDL이 차례로 나열된다. 예를 들어 대상 CUBRID 버전이 지원하지 않는 객체(11.0 대상의 Synonym, Grant 등)가 여기에 표시된다. 이 탭의 객체는 대상에 생성되지 않으므로, 적재 후 수동으로 보완하거나 마법사 5단계로 돌아가 매핑을 조정한다.</p>
+</section>
+<section id="id8">
+<h3>로그<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id8" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id8'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>마이그레이션 실행 중 기록된 전체 로그가 텍스트로 표시된다. 시간 순서대로 단계별 진행 메시지, 경고, 에러가 모두 포함된다. 툴바의 <strong>모든 테이블을 엑셀 파일로 저장</strong> 버튼으로 외부 파일에 보존할 수 있다 (저장 형식은 아래 “보고서 저장” 항목 참고).</p>
+</section>
+<section id="id9">
+<h3>설정 정보<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id9" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id9'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>마법사 6단계 <strong>최종 확인</strong>에서 보았던 설정 요약과 동일한 내용을 텍스트로 보여 준다. 연결 정보, 선택된 객체 목록, 출력 형식, 성능 파라미터 등이 들어 있어 마이그레이션을 어떤 설정으로 실행했는지 사후에 확인할 수 있다. 단, 이 탭의 내용은 <strong>모든 테이블을 엑셀 파일로 저장</strong>의 저장 대상에는 포함되지 않는다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>보고서 저장<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id10" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id10'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<p>툴바의 <strong>모든 테이블을 엑셀 파일로 저장</strong> 버튼을 누르면, 선택한 디렉토리에 마이그레이션 시작 시각(<code class="docutils literal notranslate"><span class="pre">yyyy_MM_dd_HH_mm_ss_SSS</span></code>)을 공통 접두사로 하는 4개 파일이 저장된다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">[저장 디렉토리]/
+</span><span id="line-2">├── &lt;타임스탬프&gt;.xls       # 요약 / DB 객체 / 이전 통계 3개 시트
+</span><span id="line-3">├── &lt;타임스탬프&gt;.txt       # 미지원 객체 탭
+</span><span id="line-4">├── &lt;타임스탬프&gt;.log       # 로그 탭
+</span><span id="line-5">└── &lt;타임스탬프&gt;.rename    # 변경된 객체 탭
+</span></code></pre></div>
+</div>
+<p><strong>설정 정보</strong> 탭은 저장 대상이 아니다. 설정을 다시 활용하려면 <strong>마이그레이션 재실행…</strong> 버튼을 사용하거나 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>의 <strong>스크립트 내보내기</strong>로 내보낸다.</p>
+</section>
+<section id="id11">
+<h2>보고서 (콘솔)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id11" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id11'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<p>콘솔에서도 GUI 보고서와 동일한 정보를 텍스트 형태로 얻을 수 있다. 이력에서 보고서를 조회할 때는 <code class="docutils literal notranslate"><span class="pre">migration.sh</span> <span class="pre">report</span> <span class="pre">&lt;mh_file&gt;</span></code> 명령(Windows는 <code class="docutils literal notranslate"><span class="pre">migration.bat</span> <span class="pre">report</span> <span class="pre">&lt;mh_file&gt;</span></code>)을 사용한다.</p>
+<p>기본 출력 예시는 다음과 같다.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">Reading migration history file: &lt;1716166534123.mh&gt;
+</span><span id="line-2">
+</span><span id="line-3">[Overview]
+</span><span id="line-4">    [table]
+</span><span id="line-5">           Total:[7]
+</span><span id="line-6">        Exported:[7]
+</span><span id="line-7">        Imported:[7]
+</span><span id="line-8">    [index]
+</span><span id="line-9">           Total:[12]
+</span><span id="line-10">        Exported:[12]
+</span><span id="line-11">        Imported:[12]
+</span><span id="line-12">    ...
+</span><span id="line-13">
+</span><span id="line-14">[Schema migration]
+</span><span id="line-15">    [table]employees:[successfully]
+</span><span id="line-16">        DDL:[CREATE TABLE "employees" (...) ]
+</span><span id="line-17">    [view]v_dept:[successfully]
+</span><span id="line-18">        DDL:[CREATE VIEW "v_dept" (...) ]
+</span><span id="line-19">    ...
+</span><span id="line-20">
+</span><span id="line-21">[Data migration]
+</span><span id="line-22">    [employees] &gt;&gt; [employees]
+</span><span id="line-23">           Total:[120]
+</span><span id="line-24">        Exported:[120]
+</span><span id="line-25">        Imported:[120]
+</span><span id="line-26">    ...
+</span></code></pre></div>
+</div>
+<p>세 섹션은 대괄호 <code class="docutils literal notranslate"><span class="pre">[Overview]</span></code>, <code class="docutils literal notranslate"><span class="pre">[Schema</span> <span class="pre">migration]</span></code>, <code class="docutils literal notranslate"><span class="pre">[Data</span> <span class="pre">migration]</span></code> 헤더로 구분된다. 기본 페이지 모드에서는 10건마다 Enter 입력 대기로 멈춘다. 한 번에 전체를 출력하려면 <code class="docutils literal notranslate"><span class="pre">-ao</span></code> 옵션을 사용한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">report</span></code> 명령의 옵션은 <a class="reference internal" href="09_console.html"><span class="doc">콘솔(CLI) 가이드</span></a>를 참고한다.</p>
+</section>
+<section id="id12">
+<h2>보고서 / 로그 파일 위치<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id12" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id12'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<p>GUI / 콘솔 모드 공통으로, 마이그레이션 산출물은 워크스페이스에 저장된다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">&lt;설치 경로&gt;/workspace/cmt/
+</span><span id="line-2">├── report/                                   # 마이그레이션 보고서 (이력 컨테이너)
+</span><span id="line-3">│   └── &lt;타임스탬프&gt;.mh                       # 예: 1716166534123.mh
+</span><span id="line-4">├── script/                                   # 저장된 마이그레이션 스크립트 (XML)
+</span><span id="line-5">├── log/                                      # CMT 본체 로그
+</span><span id="line-6">│   ├── cubrid-migration.log                  # 현재 활성 로그
+</span><span id="line-7">│   └── cubrid-migration.yyyy-MM-dd.N.log.gz  # 롤링 백업
+</span><span id="line-8">├── errors/&lt;타임스탬프&gt;/                      # 적재 실패 행 (원본 Table별 SQL 파일)
+</span><span id="line-9">├── history/                                  # XML dump 파싱 이력 (XmlCatalogHistory.xml)
+</span><span id="line-10">├── schemacache/                              # 원본 스키마 캐시
+</span><span id="line-11">└── temp/                                     # 임시 작업 파일
+</span></code></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">report/</span></code>의 <code class="docutils literal notranslate"><span class="pre">.mh</span></code> 파일이 한 번의 마이그레이션 이력이며, <strong>마이그레이션 이력</strong> 뷰에서 더블클릭하거나 콘솔의 <code class="docutils literal notranslate"><span class="pre">report</span></code> / <code class="docutils literal notranslate"><span class="pre">log</span></code> 명령으로 다시 조회할 수 있다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">errors/</span></code> 아래의 SQL 파일은 <strong>입력 실패 데이터 로그 파일로 저장</strong> 옵션이 켜져 있을 때만 기록되며, 수정 후 <code class="docutils literal notranslate"><span class="pre">csql</span></code>로 다시 적용해 실패한 행만 보충 적재할 수 있다(<a class="reference internal" href="12_advanced.html"><span class="doc">고급 사용</span></a>의 오류 레코드 저장 참고).</p>
+</section>
+<section id="id13">
+<h2>로그 파일<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id13" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id13'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<section id="id14">
+<h3>파일명과 롤링<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id14" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id14'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>CMT 본체 로그는 <code class="docutils literal notranslate"><span class="pre">&lt;설치</span> <span class="pre">경로&gt;/workspace/cmt/log/cubrid-migration.log</span></code> 한 파일에 누적된다. 100MB 또는 하루를 넘기면 <code class="docutils literal notranslate"><span class="pre">cubrid-migration.yyyy-MM-dd.N.log.gz</span></code> 형태로 압축 롤링된다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">&lt;설치 경로&gt;/workspace/cmt/log/
+</span><span id="line-2">├── cubrid-migration.log              # 현재 활성
+</span><span id="line-3">├── cubrid-migration.2026-05-23.0.log.gz
+</span><span id="line-4">└── cubrid-migration.2026-05-22.0.log.gz
+</span></code></pre></div>
+</div>
+<p>GUI / 콘솔 모두 동일한 파일에 기록된다.</p>
+</section>
+<section id="id15">
+<h3>로그 형식<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id15" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id15'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>로그 한 줄의 패턴은 <code class="docutils literal notranslate"><span class="pre">%d{yyyy-MM-dd</span> <span class="pre">HH:mm:ss.SSS}</span> <span class="pre">[%thread]</span> <span class="pre">%-5level</span> <span class="pre">%logger{36}</span> <span class="pre">-</span> <span class="pre">%msg%n</span></code>이며, 실제 출력 예는 다음과 같다.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">2026-05-23 09:12:34.567 [main] INFO  c.c.c.c.engine.MigrationProcessManager - Exporting table "nation" started
+</span><span id="line-2">2026-05-23 09:12:35.123 [pool-3-thread-1] WARN  c.c.c.c.engine.importer.impl.JDBCImporter - Truncated VARCHAR value at row 17
+</span><span id="line-3">2026-05-23 09:12:36.789 [pool-3-thread-2] ERROR c.c.c.c.engine.importer.impl.JDBCImporter - FK violation on "city"
+</span></code></pre></div>
+</div>
+</section>
+<section id="id16">
+<h3>레벨<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id16" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id16'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<p>레벨 종류는 다음과 같다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%"/>
+<col style="width: 32.0%"/>
+<col style="width: 50.0%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>레벨</p></th>
+<th class="head"><p>표시 시점</p></th>
+<th class="head"><p>용도</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DEBUG</p></td>
+<td><p>디버그 모드</p></td>
+<td><p>내부 동작 상세</p></td>
+</tr>
+<tr class="row-odd"><td><p>INFO</p></td>
+<td><p>기본</p></td>
+<td><p>단계별 진행 상황</p></td>
+</tr>
+<tr class="row-even"><td><p>WARN</p></td>
+<td><p>항상</p></td>
+<td><p>데이터 잘림 / 기본값 치환 등 복구 가능한 이슈</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR</p></td>
+<td><p>항상</p></td>
+<td><p>객체 생성 실패, 적재 실패 등 손실로 이어지는 이슈</p></td>
+</tr>
+</tbody>
+</table>
+<p>로그 레벨, 패턴 등 logback 설정은 <code class="docutils literal notranslate"><span class="pre">logback.xml</span></code> 파일을 직접 편집해 변경한다. 자세한 절차는 <a class="reference internal" href="12_advanced.html"><span class="doc">고급 사용</span></a>을 참고한다.</p>
+</section>
+</section>
+<section id="id17">
+<h2>관련 챕터<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id17" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id17'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a> — 대상 타입별 출력 디렉토리 구조</p></li>
+<li><p><a class="reference internal" href="09_console.html"><span class="doc">콘솔(CLI) 가이드</span></a> — <code class="docutils literal notranslate"><span class="pre">report</span></code> 명령 옵션, 콘솔 출력 형식</p></li>
+<li><p><a class="reference internal" href="11_config.html"><span class="doc">환경 설정</span></a> — 환경 설정 (기본 설정, JDBC 드라이버, 워크스페이스)</p></li>
+<li><p><a class="reference internal" href="12_advanced.html"><span class="doc">고급 사용</span></a> — 로그 설정 (<code class="docutils literal notranslate"><span class="pre">logback.xml</span></code>) 및 로그 분석 순서</p></li>
+</ul>
+</section>
+</section>
+</div><div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
+<div class="mr-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="09_console.html">
+<svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+        콘솔(CLI) 가이드
+      </a>
+</div>
+<div class="ml-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="11_config.html">
+        환경 설정
+        <svg class="ml-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</a>
+</div>
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#gui'" class="reference internal" href="#gui">보고서 화면 (GUI)</a><ul>
+<li><a :data-current="activeSection === '#id2'" class="reference internal" href="#id2">툴바</a></li>
+<li><a :data-current="activeSection === '#id3'" class="reference internal" href="#id3">탭 구성</a></li>
+<li><a :data-current="activeSection === '#id4'" class="reference internal" href="#id4">요약 탭</a></li>
+<li><a :data-current="activeSection === '#db'" class="reference internal" href="#db">상세 — DB 객체</a></li>
+<li><a :data-current="activeSection === '#id5'" class="reference internal" href="#id5">상세 — 이전 통계</a></li>
+<li><a :data-current="activeSection === '#id6'" class="reference internal" href="#id6">변경된 객체</a></li>
+<li><a :data-current="activeSection === '#id7'" class="reference internal" href="#id7">미지원 객체</a></li>
+<li><a :data-current="activeSection === '#id8'" class="reference internal" href="#id8">로그</a></li>
+<li><a :data-current="activeSection === '#id9'" class="reference internal" href="#id9">설정 정보</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#id10'" class="reference internal" href="#id10">보고서 저장</a></li>
+<li><a :data-current="activeSection === '#id11'" class="reference internal" href="#id11">보고서 (콘솔)</a></li>
+<li><a :data-current="activeSection === '#id12'" class="reference internal" href="#id12">보고서 / 로그 파일 위치</a></li>
+<li><a :data-current="activeSection === '#id13'" class="reference internal" href="#id13">로그 파일</a><ul>
+<li><a :data-current="activeSection === '#id14'" class="reference internal" href="#id14">파일명과 롤링</a></li>
+<li><a :data-current="activeSection === '#id15'" class="reference internal" href="#id15">로그 형식</a></li>
+<li><a :data-current="activeSection === '#id16'" class="reference internal" href="#id16">레벨</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#id17'" class="reference internal" href="#id17">관련 챕터</a></li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+</div>
+</div>
+</footer>
+</div><button :class="{'opacity-0 invisible' : !showScrollTop}" @click="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 p-2 z-10 rounded-sm bg-gray-700 text-xs text-white transition-all duration-1000 hover:bg-gray-950 focus:bg-gray-950" id="scrolltop" x-cloak="">
+<svg aria-hidden="true" class="inline fill-current mb-[2px]" height="14" viewbox="0 96 960 960" width="14" xmlns="http://www.w3.org/2000/svg">
+<path d="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z"></path>
+</svg>
+  Back to top
+</button>
+<script src="_static/documentation_options.js?v=c59315e1"></script>
+<script src="_static/doctools.js?v=fd6eb6e6"></script>
+<script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+<script defer="defer" src="_static/theme.js?v=b0acb063"></script>
+<script src="_static/translations.js?v=afa94a99"></script>
+<script src="_static/theme-toggle.js?v=fa11ca92"></script>
+</body>
+</html>
