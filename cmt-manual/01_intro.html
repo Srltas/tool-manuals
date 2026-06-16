@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -148,7 +148,7 @@
 <li><p><strong>마이그레이션 예약</strong>: 1회 실행, 매일 반복 실행, 고급(Unix Cron 구문) 모드 지원</p></li>
 <li><p><strong>마이그레이션 보고서</strong>: 객체별·레코드별로 실행 결과 확인</p></li>
 </ul>
-<p>CMT는 한 번의 작업에서 하나의 원본 데이터베이스를 하나의 대상에 매핑한다. 마이그레이션 정의를 스크립트로 저장해 두면 GUI에서 재실행하거나 콘솔에서 자동화할 수 있어 반복 작업에 그대로 활용할 수 있다.</p>
+<p>CMT는 한 번의 작업에서 하나의 원본 데이터베이스를 하나의 대상(온라인 CUBRID 또는 파일 출력)으로 마이그레이션한다. 마이그레이션 정의를 스크립트로 저장해 두면 GUI에서 재실행하거나 콘솔에서 자동화할 수 있어 반복 작업에 그대로 활용할 수 있다.</p>
 </section>
 <section id="id3">
 <h2>지원 원본 데이터베이스<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id3" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
@@ -225,7 +225,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">코드체</span></code>: 명령, 옵션, 파일 경로, 환경 변수, XML 태그, SQL 키워드</p></li>
 <li><p><strong>굵은 글씨</strong>: 화면의 버튼, 메뉴, 입력 항목 라벨 (예: <strong>새 마이그레이션</strong>, <strong>테스트</strong>)</p></li>
 <li><p>원본 / 대상: 마이그레이션의 source / target</p></li>
-<li><p>객체 타입은 영문 표기를 우선 사용한다 (Synonym, Grant, Index 등).</p></li>
+<li><p>객체 종류은 영문 표기를 우선 사용한다 (Synonym, Grant, Index 등).</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
@@ -266,7 +266,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

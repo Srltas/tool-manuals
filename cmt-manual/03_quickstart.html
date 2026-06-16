@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -125,11 +125,11 @@
 <div id="content" role="main">
 <section id="id1">
 <h1>빠른 시작<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
-<p>본 챕터는 CMT를 처음 사용하는 사용자가 설치 직후 첫 마이그레이션을 직접 수행할 수 있도록 만든 단계별 가이드이다. 가장 흔한 두 가지 GUI 시나리오와 CLI 시나리오 한 가지를 다룬다.</p>
+<p>본 챕터는 CMT를 처음 사용하는 사용자가 설치 직후 첫 마이그레이션을 직접 수행할 수 있도록 만든 단계별 가이드이다. 일반적인 GUI 시나리오 두 가지와 CLI 시나리오 한 가지를 다룬다.</p>
 <p>세 시나리오 모두 원본 데이터베이스로 <strong>Oracle</strong>을 가정한다. Oracle 이외의 원본을 사용하는 경우에도 마법사 흐름은 동일하며, 원본 연결 정보 입력 단계의 필드 일부만 다르다. 마법사 전체 단계의 모든 옵션과 분기 흐름은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>에서, 콘솔 명령의 전체 레퍼런스는 <a class="reference internal" href="09_console.html"><span class="doc">콘솔(CLI) 가이드</span></a>에서 자세히 다룬다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>본 챕터의 화면 예시는 한국어 로케일 Windows 환경 기준이다.</p>
+<p>본 챕터의 화면 예시는 Windows의 한국어 로케일 환경을 기준으로 한다.</p>
 </div>
 <section id="oracle-cubrid-online-online">
 <h2>시나리오 1: Oracle → 온라인 CUBRID (online → online)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#oracle-cubrid-online-online" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#oracle-cubrid-online-online'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
@@ -159,7 +159,7 @@
 <section id="c-2">
 <h3>C. 원본 데이터베이스 선택 (2단계)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#c-2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#c-2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>저장되어 있는 Oracle 연결 정보를 목록에서 선택한다. 등록된 연결 정보가 없으면 <strong>신규</strong> 버튼을 클릭하여 연결 정보 입력 다이얼로그를 연다.</p>
-<p>다이얼로그에서 호스트, 포트(기본 1521), 데이터베이스 이름(SID 또는 Service Name), 사용자, 비밀번호를 입력하고 JDBC 드라이버 경로에 Oracle JDBC 드라이버 jar 파일을 지정한다. <strong>테스트</strong> 버튼으로 접속을 확인한 뒤 <strong>확인</strong>으로 저장한다.</p>
+<p>다이얼로그에서 호스트, 포트(기본 1521), 데이터베이스 이름(SID 또는 Service Name), 사용자, 비밀번호를 입력하고 JDBC 드라이버 경로에 Oracle JDBC 드라이버 JAR 파일을 지정한다. <strong>테스트</strong> 버튼으로 접속을 확인한 뒤 <strong>확인</strong>으로 저장한다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_2%EB%8B%A8%EA%B3%84.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_2%EB%8B%A8%EA%B3%84.png"/>
 </section>
 <section id="d-3">
@@ -169,7 +169,7 @@
 </section>
 <section id="e-4">
 <h3>E. 스키마 매핑 (4단계)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#e-4" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#e-4'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>원본 Oracle 사용자 (스키마)와 대상 CUBRID 사용자를 매핑한다. 이관할 원본 스키마 행 왼쪽의 체크박스에 체크하고, <strong>대상 스키마</strong> 열에서 대상 CUBRID에서 사용할 스키마 이름을 지정한다.</p>
+<p>원본 Oracle 사용자(스키마)와 대상 CUBRID 사용자를 매핑한다. 이관할 원본 스키마 행 왼쪽의 체크박스에 체크하고, <strong>대상 스키마</strong> 열에서 대상 CUBRID에서 사용할 스키마 이름을 지정한다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_4%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_4%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png"/>
 </section>
 <section id="f-5">
@@ -182,7 +182,7 @@
 <h3>G. 마이그레이션 전 최종 확인 (6단계)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#g-6" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#g-6'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>6단계에서는 지금까지 설정한 내용을 한 화면에 모아 보여준다. <strong>DDL 미리보기</strong> 버튼으로 생성될 DDL을 미리 볼 수 있다.</p>
 <p>화면 하단의 <strong>고급 성능 설정…</strong> 버튼으로 추출 스레드 개수, 테이블당 입력 스레드 개수, 커밋 주기 등 성능 옵션을 조정할 수 있다. 원본 DB 종류와 대상 형식에 따라 표시되는 항목은 달라진다. 첫 마이그레이션에서는 기본값을 그대로 사용해도 충분하다.</p>
-<p>화면 하단의 <strong>시작하기</strong> 버튼을 누르면 실행 모드 다이얼로그가 열린다. <strong>바로 시작하기</strong>를 선택하면 즉시 실행되고, <strong>예약하기</strong>를 선택하면 1회 또는 반복 실행으로 등록할 수 있다 (<a class="reference internal" href="04_ui.html"><span class="doc">GUI 둘러보기</span></a> 참고).</p>
+<p>화면 하단의 <strong>시작하기</strong> 버튼을 누르면 실행 모드 다이얼로그가 열린다. <strong>바로 시작하기</strong>를 선택하면 즉시 실행되고, <strong>예약하기</strong>를 선택하면 1회 또는 반복 실행으로 등록할 수 있다(<a class="reference internal" href="04_ui.html"><span class="doc">GUI 둘러보기</span></a> 참고).</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_6%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_6%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png"/>
 </section>
 <section id="h">
@@ -193,7 +193,7 @@
 </section>
 <section id="i">
 <h3>I. 마이그레이션 보고서 확인<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#i" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#i'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>마이그레이션이 끝나면 보고서를 바로 열지 묻는 다이얼로그가 표시된다. 보고서에는 객체 종류별 성공/실패 건수, 마이그레이션된 레코드 수, 에러 메시지 등이 정리되어 있다.</p>
+<p>마이그레이션이 끝나면 보고서를 바로 열지 묻는 다이얼로그가 표시된다. 보고서에는 객체 종류별 성공/실패 건수, 마이그레이션된 레코드 수, 오류 메시지 등이 정리되어 있다.</p>
 <p>보고서는 워크스페이스에 보관되므로 이후 메인 화면의 <strong>마이그레이션 이력</strong>에서 다시 열어볼 수 있다. 자세한 내용은 <a class="reference internal" href="10_report.html"><span class="doc">마이그레이션 보고서 &amp; 출력 파일</span></a>을 참고한다.</p>
 <img alt="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EB%A6%AC%ED%8F%AC%ED%8A%B8_%EC%98%A8%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EB%A6%AC%ED%8F%AC%ED%8A%B8_%EC%98%A8%EB%9D%BC%EC%9D%B8.png"/>
 </section>
@@ -218,7 +218,7 @@
 <li><p><strong>원본 유형</strong>: <strong>온라인 Oracle 데이터베이스</strong></p></li>
 <li><p><strong>대상 유형</strong>: <strong>로컬 CUBRID dump 파일</strong></p></li>
 </ul>
-<p>대상 유형으로 <strong>로컬 SQL 스크립트 파일</strong>·<strong>로컬 CSV 파일</strong>·<strong>로컬 XLS 파일</strong>을 선택해도 이후 흐름은 거의 같다. 형식별 차이는 <a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a>에서 다룬다.</p>
+<p>대상 유형으로 <strong>로컬 SQL 스크립트 파일</strong>·<strong>로컬 CSV 파일</strong>·<strong>로컬 XLS 파일</strong>을 선택해도 이후 흐름은 거의 같다. 형식별 차이는 <a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a>에서 다룬다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_1%EB%8B%A8%EA%B3%84_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_1%EB%8B%A8%EA%B3%84_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png"/>
 </section>
 <section id="id4">
@@ -228,7 +228,7 @@
 </section>
 <section id="id5">
 <h3>D. 출력 파일 설정 (3단계)<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id5" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id5'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>대상 데이터베이스 선택 대신 출력 파일 설정 화면이 나타난다. <strong>파일 경로</strong>와 <strong>출력 파일의 Prefix</strong>, 적재할 대상의 <strong>CUBRID 버전</strong> 등을 지정한다. 각 항목의 상세는 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>의 3단계를 참고한다.</p>
+<p>대상 데이터베이스 선택 대신 출력 파일 설정 화면이 나타난다. <strong>파일 경로</strong>와 <strong>출력 파일의 Prefix</strong>, 적재할 대상의 <strong>CUBRID 버전</strong> 등을 지정한다. 각 항목에 대한 자세한 설명은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>의 3단계를 참고한다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_3%EB%8B%A8%EA%B3%84_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_3%EB%8B%A8%EA%B3%84_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8.png"/>
 </section>
 <section id="id6">
@@ -261,11 +261,11 @@
 </span><span id="line-4">cubrid<span class="w"> </span>loaddb<span class="w"> </span>-u<span class="w"> </span>dba<span class="w"> </span>-d<span class="w"> </span>&lt;data_file&gt;<span class="w"> </span>mydb
 </span></code></pre></div>
 </div>
-<p>실제 파일명과 적재 순서는 스키마 파일 분리, 테이블별 파일 분할 출력 옵션에 따라 달라진다. 전체 디렉토리 구조와 파일 명명 규칙은 <a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a>를 참고한다.</p>
+<p>실제 파일명과 적재 순서는 스키마 파일 분리, 테이블별 파일 분할 출력 옵션에 따라 달라진다. 전체 디렉토리 구조와 파일 명명 규칙은 <a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a>를 참고한다.</p>
 </section>
 </section>
 <section id="id11">
-<h2>시나리오 3: 콘솔로 마이그레이션 하기<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id11" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id11'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<h2>시나리오 3: 콘솔로 마이그레이션하기<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id11" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id11'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
 <p>시나리오 1과 같은 작업(Oracle → 온라인 CUBRID)을 콘솔만으로 실행하는 흐름이다.</p>
 <p>전체 흐름은 다음 단계로 구성된다.</p>
 <ol class="arabic simple">
@@ -284,7 +284,7 @@
 </span><span id="line-5"><span class="na">oracle_prod.dbname</span><span class="o">=</span><span class="s">ORCL</span>
 </span><span id="line-6"><span class="na">oracle_prod.user</span><span class="o">=</span><span class="s">scott</span>
 </span><span id="line-7"><span class="na">oracle_prod.password</span><span class="o">=</span><span class="s">tiger</span>
-</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 jar 경로&gt;</span>
+</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 JAR 경로&gt;</span>
 </span><span id="line-9">
 </span><span id="line-10"><span class="c1"># 대상 CUBRID</span>
 </span><span id="line-11"><span class="na">cubrid_prod.type</span><span class="o">=</span><span class="s">cubrid</span>
@@ -306,7 +306,7 @@
 </span></code></pre></div>
 </div>
 <p>성공하면 <code class="docutils literal notranslate"><span class="pre">/tmp/scripts/</span></code> 아래에 <code class="docutils literal notranslate"><span class="pre">ORACLE_ORCL_&lt;timestamp&gt;.xml</span></code> 형식의 파일이 생성된다. <code class="docutils literal notranslate"><span class="pre">-o</span></code> 인자는 디렉토리 경로이며, 파일명은 자동으로 생성된다.</p>
-<p>생성된 XML에는 원본/대상 연결 파라미터, 객체 목록, 스키마 매핑이 모두 포함되며, 콘솔 모드에서 비대화형 실행 입력으로 사용된다.</p>
+<p>생성된 XML에는 원본/대상 연결 파라미터, 객체 목록, 스키마 매핑이 모두 포함되며, 콘솔 모드의 비대화형 실행을 위한 입력 파일로 사용된다.</p>
 </section>
 <section id="id12">
 <h3>3단계: 마이그레이션 실행<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id12" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id12'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
@@ -338,7 +338,7 @@
 <li><p><a class="reference internal" href="04_ui.html"><span class="doc">GUI 둘러보기</span></a> — 메인 화면, 메뉴, 툴바, 단축키</p></li>
 <li><p><a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a> — 마법사 전체 단계의 모든 옵션과 분기</p></li>
 <li><p><a class="reference internal" href="06_objects.html"><span class="doc">객체 매핑 상세</span></a> — 데이터 타입 매핑, Column 단위 변환, WHERE 필터</p></li>
-<li><p><a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a> — dump/SQL/CSV/XLS 형식별 출력 옵션</p></li>
+<li><p><a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a> — dump/SQL/CSV/XLS 형식별 출력 옵션</p></li>
 <li><p><a class="reference internal" href="09_console.html"><span class="doc">콘솔(CLI) 가이드</span></a> — 콘솔 명령 전체 레퍼런스</p></li>
 </ul>
 </section>
@@ -387,7 +387,7 @@
 <li><a :data-current="activeSection === '#id10'" class="reference internal" href="#id10">I. 마이그레이션 보고서 확인</a></li>
 </ul>
 </li>
-<li><a :data-current="activeSection === '#id11'" class="reference internal" href="#id11">시나리오 3: 콘솔로 마이그레이션 하기</a><ul>
+<li><a :data-current="activeSection === '#id11'" class="reference internal" href="#id11">시나리오 3: 콘솔로 마이그레이션하기</a><ul>
 <li><a :data-current="activeSection === '#db-conf'" class="reference internal" href="#db-conf">1단계: db.conf에 연결 정보 등록</a></li>
 <li><a :data-current="activeSection === '#xml'" class="reference internal" href="#xml">2단계: 마이그레이션 XML 생성</a></li>
 <li><a :data-current="activeSection === '#id12'" class="reference internal" href="#id12">3단계: 마이그레이션 실행</a></li>
@@ -404,7 +404,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

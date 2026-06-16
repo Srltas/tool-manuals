@@ -21,13 +21,13 @@
 <meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="#030711" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>대상 타입 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation</title>
-<meta content="대상 타입 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation" property="og:title"/>
-<meta content="대상 타입 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation" name="twitter:title"/>
+<title>대상 유형 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation</title>
+<meta content="대상 유형 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation" property="og:title"/>
+<meta content="대상 유형 가이드 | CUBRID Migration Toolkit 12.0.0 Documentation" name="twitter:title"/>
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">대상 타입 가이드</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -120,18 +120,18 @@
 <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
 </svg>
 </a>
-<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">대상 타입 가이드</span>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">대상 유형 가이드</span>
 </nav>
 <div id="content" role="main">
 <section id="id1">
-<h1>대상 타입 가이드<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
+<h1>대상 유형 가이드<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
 <p>본 챕터는 CMT가 지원하는 다섯 가지 대상(target) 출력 형식을 한곳에 모아 설명한다. 각 형식이 만드는 산출물, 후속 적재 도구, 실행 흐름, 그리고 선택 시 고려할 제약 사항을 정리한다. 1단계에서 어떤 대상을 고를지 결정할 때나 이미 생성된 출력 파일을 후속 도구로 다룰 때 참고한다.</p>
 <p>마법사에서 대상을 선택하는 절차는 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>를, 객체별 매핑 옵션은 <a class="reference internal" href="06_objects.html"><span class="doc">객체 매핑 상세</span></a>를 참고한다. 본 챕터는 형식별 특성에만 집중한다.</p>
 <section id="id2">
-<h2>대상 타입 비교<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
+<h2>대상 유형 비교<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
 <p>대상은 크게 “운영 중인 CUBRID에 직접 적재”와 “파일로 저장”으로 나뉜다.</p>
 <table class="docutils align-default" id="id16">
-<caption><span class="caption-text">대상 타입 비교</span><a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id16"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></caption>
+<caption><span class="caption-text">대상 유형 비교</span><a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id16"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></caption>
 <colgroup>
 <col style="width: 22.0%"/>
 <col style="width: 26.8%"/>
@@ -177,7 +177,7 @@
 </section>
 <section id="cubrid">
 <h2>온라인 CUBRID<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#cubrid" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#cubrid'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p>운영 중인 CUBRID에 JDBC로 접속해 객체와 데이터를 직접 적재하는 모드이다. 파일 산출 없이 마이그레이션이 끝나면 대상 DB가 즉시 사용 가능한 상태가 된다.</p>
+<p>운영 중인 CUBRID에 JDBC로 접속해 객체와 데이터를 직접 적재하는 모드이다. 별도 파일을 만들지 않고 마이그레이션이 끝나면 대상 DB가 즉시 사용 가능한 상태가 된다.</p>
 <section id="id3">
 <h3>실행 흐름<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id3" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>다음 순서로 수행된다.</p>
@@ -238,7 +238,7 @@
 </section>
 <section id="id7">
 <h2>파일 출력 공통 사항<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id7" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id7'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p>CUBRID dump, SQL 스크립트, CSV, XLS 등 파일을 생성하는 모든 대상은 동일한 디렉토리 규칙과 파일명 규칙을 따른다. 본 절에서 공통 규칙을 정리하고, 이후 각 대상 절에서는 그 위에 얹히는 형식 고유 사항만 다룬다.</p>
+<p>CUBRID dump, SQL 스크립트, CSV, XLS 등 파일을 생성하는 모든 대상은 동일한 디렉토리 규칙과 파일명 규칙을 따른다. 본 절에서 공통 규칙을 정리하고, 이후 각 대상 절에서는 그 위에 더해지는 형식별 고유 사항만 다룬다.</p>
 <p><strong>출력 루트</strong></p>
 <p>파일 출력 대상의 모든 산출물은 다음 경로 아래에 생성된다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="o">&lt;</span><span class="n">파일</span> <span class="n">저장소</span><span class="o">&gt;/&lt;</span><span class="n">마이그레이션</span> <span class="n">이름</span><span class="o">&gt;/</span>
@@ -619,7 +619,7 @@
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
-<li><a :data-current="activeSection === '#id2'" class="reference internal" href="#id2">대상 타입 비교</a></li>
+<li><a :data-current="activeSection === '#id2'" class="reference internal" href="#id2">대상 유형 비교</a></li>
 <li><a :data-current="activeSection === '#cubrid'" class="reference internal" href="#cubrid">온라인 CUBRID</a><ul>
 <li><a :data-current="activeSection === '#id3'" class="reference internal" href="#id3">실행 흐름</a></li>
 <li><a :data-current="activeSection === '#id4'" class="reference internal" href="#id4">커밋 모델</a></li>
@@ -657,7 +657,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

@@ -27,13 +27,13 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
 <link href="genindex.html" rel="index" title="색인"/>
 <link href="10_report.html" rel="next" title="마이그레이션 보고서 &amp; 출력 파일"/>
-<link href="08_target.html" rel="prev" title="대상 타입 가이드"/>
+<link href="08_target.html" rel="prev" title="대상 유형 가이드"/>
 </head>
 <body :class="{ 'overflow-hidden': showSidebar }" @scroll.window="showScrollTop = pageYOffset &gt; 100" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
 <div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -137,7 +137,7 @@
 </section>
 <section id="id2">
 <h2>설치 &amp; 실행<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p>콘솔은 GUI와 별도의 전용 패키지로 배포된다(콘솔: <code class="docutils literal notranslate"><span class="pre">CUBRID-Migration-Toolkit-console-...-linux.tar.gz</span></code>, GUI: <code class="docutils literal notranslate"><span class="pre">CUBRID-Migration-Toolkit-...-windows-x64.zip</span></code>). <a class="reference internal" href="02_install.html"><span class="doc">설치</span></a>의 안내대로 콘솔 패키지를 설치하면 <code class="docutils literal notranslate"><span class="pre">migration.sh</span></code> / <code class="docutils literal notranslate"><span class="pre">migration.bat</span></code> 실행 파일이 설치된다.</p>
+<p>콘솔은 GUI와 별도의 전용 패키지로 배포된다(GUI 패키지와 달리 파일 이름에 <code class="docutils literal notranslate"><span class="pre">-console-</span></code>이 포함된다). <a class="reference internal" href="02_install.html"><span class="doc">설치</span></a>의 안내대로 콘솔 패키지를 설치하면 <code class="docutils literal notranslate"><span class="pre">migration.sh</span></code> / <code class="docutils literal notranslate"><span class="pre">migration.bat</span></code> 실행 파일이 설치된다.</p>
 <section id="id3">
 <h3>실행 파일<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id3" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <table class="docutils align-default">
@@ -205,6 +205,10 @@
 <div class="admonition tip">
 <p class="admonition-title">팁</p>
 <p><code class="docutils literal notranslate"><span class="pre">-Xmx</span></code> 값으로 최대 힙 크기를 조정할 수 있으며, GUI 모드의 힙 조정은 <a class="reference internal" href="12_advanced.html"><span class="doc">고급 사용</span></a>을 참고한다.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">migration.sh</span></code> / <code class="docutils literal notranslate"><span class="pre">migration.bat</span></code>은 현재 작업 디렉토리(<code class="docutils literal notranslate"><span class="pre">$PWD</span></code>)를 기준으로 동봉된 JRE와 실행 파일을 찾는다. 따라서 <strong>CMT 설치 디렉토리로 이동한 뒤 실행</strong>해야 하며, 다른 위치에서 절대 경로로 호출하면 JRE를 찾지 못해 실패한다.</p>
 </div>
 </section>
 <section id="id4">
@@ -319,8 +323,8 @@
 </div>
 <p>대상에 이미 존재하는 Table에 데이터만 추가로 적재한다. 대상 스키마가 없거나 호환되지 않으면 실패한다.</p>
 <p><strong>예제 5 — 보고서 로그 디버그 기록 + 사용자 드라이버</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">./migration.sh<span class="w"> </span>start<span class="w"> </span>-sd<span class="w"> </span>&lt;Oracle<span class="w"> </span>JDBC<span class="w"> </span>드라이버<span class="w"> </span>jar<span class="w"> </span>경로&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="line-2"><span class="w">                     </span>-td<span class="w"> </span>&lt;CUBRID<span class="w"> </span>JDBC<span class="w"> </span>드라이버<span class="w"> </span>jar<span class="w"> </span>경로&gt;<span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">./migration.sh<span class="w"> </span>start<span class="w"> </span>-sd<span class="w"> </span>&lt;Oracle<span class="w"> </span>JDBC<span class="w"> </span>드라이버<span class="w"> </span>JAR<span class="w"> </span>경로&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="line-2"><span class="w">                     </span>-td<span class="w"> </span>&lt;CUBRID<span class="w"> </span>JDBC<span class="w"> </span>드라이버<span class="w"> </span>JAR<span class="w"> </span>경로&gt;<span class="w"> </span><span class="se">\</span>
 </span><span id="line-3"><span class="w">                     </span>-rm<span class="w"> </span>debug<span class="w"> </span>migration.xml
 </span></code></pre></div>
 </div>
@@ -412,7 +416,7 @@
 <h3>출력 섹션<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id10" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id10'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>보고서는 세 섹션으로 구성된다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[Overview]</span></code> — 객체 타입(Table, View, Procedure 등)별 총계, Exported / Imported 카운트</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[Overview]</span></code> — 객체 종류(Table, View, Procedure 등)별 총계, Exported / Imported 개수</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">[Schema</span> <span class="pre">migration]</span></code> — 각 객체별 DDL 실행 결과 (successfully / failed). 각 객체의 DDL 본문은 항상 출력되며, 실패한 경우 오류 메시지가 추가로 출력된다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">[Data</span> <span class="pre">migration]</span></code> — 원본 → 대상 Table 쌍별 Total / Exported / Imported 레코드 수</p></li>
 </ul>
@@ -423,7 +427,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">&lt;Press [enter] to continue...&gt;
 </span></code></pre></div>
 </div>
-<p>ENTER 키로 다음 페이지를 본다. <code class="docutils literal notranslate"><span class="pre">q</span></code> / <code class="docutils literal notranslate"><span class="pre">exit</span></code> / <code class="docutils literal notranslate"><span class="pre">quit</span></code>을 입력하면 중단한다. <code class="docutils literal notranslate"><span class="pre">-ao</span></code> 옵션을 주면 일시 정지 없이 끝까지 출력한다.</p>
+<p>Enter 키를 누르면 다음 페이지가 출력된다. <code class="docutils literal notranslate"><span class="pre">q</span></code> / <code class="docutils literal notranslate"><span class="pre">exit</span></code> / <code class="docutils literal notranslate"><span class="pre">quit</span></code>을 입력하면 중단한다. <code class="docutils literal notranslate"><span class="pre">-ao</span></code> 옵션을 주면 일시 정지 없이 끝까지 출력한다.</p>
 </section>
 <section id="id12">
 <h3>예제<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id12" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id12'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
@@ -502,7 +506,7 @@
 </section>
 <section id="db-conf">
 <span id="id16"></span><h2>db.conf — 콘솔 환경 설정 파일<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#db-conf" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#db-conf'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">db.conf</span></code>는 콘솔 모드에서 원본 / 대상 데이터베이스 연결 정보를 저장하는 Java 프로퍼티 파일이다. <code class="docutils literal notranslate"><span class="pre">-s</span></code> / <code class="docutils literal notranslate"><span class="pre">-t</span></code> 옵션이 이 파일에서 설정 이름을 찾아 연결 정보를 채워 넣는다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">db.conf</span></code>는 콘솔 모드에서 원본 / 대상 데이터베이스 연결 정보를 저장하는 Java 프로퍼티 파일이다. <code class="docutils literal notranslate"><span class="pre">-s</span></code> / <code class="docutils literal notranslate"><span class="pre">-t</span></code> 옵션이 이 파일에서 설정 이름을 찾아 해당 설정의 연결 정보를 적용한다.</p>
 <section id="id17">
 <h3>위치 및 형식<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id17" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id17'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <ul class="simple">
@@ -617,7 +621,7 @@
 </span><span id="line-5"><span class="na">oracle_prod.type</span><span class="o">=</span><span class="s">oracle</span>
 </span><span id="line-6"><span class="na">oracle_prod.user</span><span class="o">=</span><span class="s">migration</span>
 </span><span id="line-7"><span class="na">oracle_prod.password</span><span class="o">=</span><span class="s">OraclePassword</span>
-</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 jar 경로&gt;</span>
+</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 JAR 경로&gt;</span>
 </span><span id="line-9">
 </span><span id="line-10"><span class="c1"># CUBRID 대상</span>
 </span><span id="line-11"><span class="na">cubrid_prod.host</span><span class="o">=</span><span class="s">cubrid.internal</span>
@@ -637,7 +641,7 @@
 </span><span id="line-5"><span class="na">oracle_prod.type</span><span class="o">=</span><span class="s">oracle</span>
 </span><span id="line-6"><span class="na">oracle_prod.user</span><span class="o">=</span><span class="s">migration</span>
 </span><span id="line-7"><span class="na">oracle_prod.password</span><span class="o">=</span><span class="s">OraclePassword</span>
-</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 jar 경로&gt;</span>
+</span><span id="line-8"><span class="na">oracle_prod.driver</span><span class="o">=</span><span class="s">&lt;Oracle JDBC 드라이버 JAR 경로&gt;</span>
 </span><span id="line-9">
 </span><span id="line-10"><span class="c1"># 파일 출력 대상 (unload)</span>
 </span><span id="line-11"><span class="na">file_export.type</span><span class="o">=</span><span class="s">unload</span>
@@ -658,7 +662,7 @@
 <p>표시 항목:</p>
 <ul class="simple">
 <li><p><strong>첫 줄</strong>: 전체 진행률 — 완료 레코드 수 / 총 레코드 수와 백분율</p></li>
-<li><p><strong>Table 줄</strong>: 현재 처리 중인 각 Table의 <code class="docutils literal notranslate"><span class="pre">소유자.테이블명(순번/전체)</span> <span class="pre">|</span> <span class="pre">적재</span> <span class="pre">레코드</span> <span class="pre">/</span> <span class="pre">전체</span> <span class="pre">레코드</span> <span class="pre">백분율</span></code></p></li>
+<li><p><strong>Table 줄</strong>: 현재 처리 중인 각 Table의 <code class="docutils literal notranslate"><span class="pre">소유자.테이블명(순번/전체)</span> <span class="pre">|</span> <span class="pre">적재</span> <span class="pre">레코드</span> <span class="pre">/</span> <span class="pre">전체</span> <span class="pre">레코드</span> <span class="pre">진행률</span></code></p></li>
 </ul>
 <section id="id21">
 <h3>최종 결과 배너<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id21" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id21'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
@@ -687,7 +691,7 @@
 </span></code></pre></div>
 </div>
 <p>요약의 <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">used</span></code> 줄은 총 경과 시간이며, 형식은 <code class="docutils literal notranslate"><span class="pre">dd</span> <span class="pre">HH:mm:ss.SSS</span></code> (일 시:분:초.밀리초)이다.</p>
-<p>요약 라인은 고정된 <code class="docutils literal notranslate"><span class="pre">Objects</span></code> / <code class="docutils literal notranslate"><span class="pre">Records</span></code> 라벨이 아니라, <strong>객체 타입별로 한 줄씩 출력</strong>된다. 객체 타입 라인은 고정된 순서로 항상 모두 출력되며, 마이그레이션 대상이 아닌 타입은 <code class="docutils literal notranslate"><span class="pre">Exported[0];</span> <span class="pre">Imported[0]</span></code>으로 표시된다. 형식은 모두 <code class="docutils literal notranslate"><span class="pre">&lt;객체</span> <span class="pre">타입&gt;:</span> <span class="pre">Exported[N];</span> <span class="pre">Imported[M]</span></code>이다.</p>
+<p>요약 라인은 고정된 <code class="docutils literal notranslate"><span class="pre">Objects</span></code> / <code class="docutils literal notranslate"><span class="pre">Records</span></code> 라벨이 아니라, <strong>객체 종류별로 한 줄씩 출력</strong>된다. 객체 종류 라인은 고정된 순서로 항상 모두 출력되며, 마이그레이션 대상이 아닌 타입은 <code class="docutils literal notranslate"><span class="pre">Exported[0];</span> <span class="pre">Imported[0]</span></code>으로 표시된다. 형식은 모두 <code class="docutils literal notranslate"><span class="pre">&lt;객체</span> <span class="pre">종류&gt;:</span> <span class="pre">Exported[N];</span> <span class="pre">Imported[M]</span></code>이다.</p>
 <p>오류가 한 건이라도 있으면 배너는 <code class="docutils literal notranslate"><span class="pre">MIGRATION</span> <span class="pre">RESULT:</span> <span class="pre">FAILED</span></code>로 표기된다.</p>
 </section>
 <section id="id22">
@@ -709,7 +713,7 @@
 <svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <polyline points="15 18 9 12 15 6"></polyline>
 </svg>
-        대상 타입 가이드
+        대상 유형 가이드
       </a>
 </div>
 <div class="ml-auto">
@@ -772,7 +776,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

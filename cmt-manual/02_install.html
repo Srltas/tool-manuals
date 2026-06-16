@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -125,7 +125,7 @@
 <div id="content" role="main">
 <section id="id1">
 <h1>설치<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
-<p>본 챕터는 CMT의 시스템 요구사항, 다운로드, OS별 설치 절차, 업그레이드, 삭제 절차를 설명한다.</p>
+<p>본 챕터는 CMT의 시스템 요구사항과 다운로드, OS별 설치·업그레이드·삭제 절차를 설명한다.</p>
 <section id="id2">
 <h2>시스템 요구사항<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
 <table class="docutils align-default">
@@ -211,7 +211,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">tar<span class="w"> </span>-xzf<span class="w"> </span>CUBRID-Migration-Toolkit-&lt;버전&gt;-linux-x86_64.tar.gz<span class="w"> </span>-C<span class="w"> </span>&lt;설치할<span class="w"> </span>디렉토리&gt;
 </span></code></pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">-C</span></code>는 압축을 풀 대상 디렉토리를 지정하는 <code class="docutils literal notranslate"><span class="pre">tar</span></code> 옵션이다. 설치 경로는 사용자 계정으로 쓰기 가능한 경로면 된다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-C</span></code>는 압축을 해제할 대상 디렉토리를 지정하는 <code class="docutils literal notranslate"><span class="pre">tar</span></code> 옵션이다. 설치 경로는 사용자 계정에 쓰기 권한이 있는 디렉토리로 지정한다.</p>
 </li>
 <li><p>압축이 풀린 디렉토리로 이동해 실행 파일을 실행한다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nb">cd</span><span class="w"> </span>&lt;압축<span class="w"> </span>해제된<span class="w"> </span>CMT<span class="w"> </span>디렉토리&gt;
@@ -296,7 +296,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

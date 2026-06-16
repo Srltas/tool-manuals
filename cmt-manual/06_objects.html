@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -125,7 +125,7 @@
 <div id="content" role="main">
 <section id="id1">
 <h1>객체 매핑 상세<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id1"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
-<p>본 챕터는 마법사 5단계 <strong>객체 매핑</strong>에서 객체 유형별로 노출되는 옵션을 한곳에 모아 안내한다. 5단계의 트리 구조, 공통 동작, 툴바 버튼은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>에서 다루므로 여기서는 다루지 않으며, 트리에서 객체 노드를 선택했을 때 우측에 표시되는 매핑 패널을 객체 종류별로 차례로 설명한다.</p>
+<p>본 챕터는 마법사 5단계 <strong>객체 매핑</strong>에서 객체 종류별로 표시되는 매핑 옵션을 한곳에 모아 정리한다. 5단계의 트리 구조와 공통 동작, 툴바 버튼은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>에서 다루므로, 여기서는 객체 노드를 선택하면 우측에 나타나는 매핑 패널을 객체 종류별로 설명한다.</p>
 <p>객체 매핑 화면은 원본 데이터베이스에서 추출한 객체 카탈로그를 사용자가 검토하고 대상 CUBRID에 맞게 조정하는 작업 공간이다. 각 절은 객체 개요, 노출되는 필드/옵션, 그리고 마이그레이션 결과에 영향을 주는 주의사항으로 구성된다.</p>
 <section id="id2">
 <h2>객체 종류 개요<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
@@ -196,7 +196,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>좌측 트리에는 객체 종류 노드가 원본 DB와 관계없이 모두 표시된다. 해당 종류의 객체가 없으면(원본 DB가 지원하지 않는 경우 포함) 노드 이름 뒤 괄호 안 개수가 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 표시되고 펼칠 수 없을 뿐, 노드 자체가 사라지지는 않는다. 예를 들어 MySQL/MariaDB 원본에서는 Synonym·Grant 노드가 개수 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 나타난다. 원본 DB별 지원 범위는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>를 참고한다.</p>
+<p>좌측 트리에는 객체 종류 노드가 원본 DB와 관계없이 모두 표시된다. 해당 종류의 객체가 없으면(원본 DB가 지원하지 않는 경우 포함) 노드 이름 뒤 괄호 안의 개수가 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 표시되고 펼칠 수 없을 뿐, 노드 자체가 사라지지는 않는다. 예를 들어 MySQL/MariaDB 원본에서는 Synonym·Grant 노드가 개수 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 나타난다. 원본 DB별 지원 범위는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>를 참고한다.</p>
 </div>
 </section>
 <section id="table-column">
@@ -204,7 +204,7 @@
 <p>Table은 마이그레이션의 핵심 단위이다. 좌측 트리에서 <strong>테이블</strong> 폴더 또는 개별 Table 노드를 선택하면 우측에 Table 매핑 패널이 표시되고, 단일 Column 노드를 선택하면 Column 매핑 패널로 전환된다.</p>
 <section id="table">
 <h3>Table 옵션<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#table" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#table'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>Table 옵션은 두 곳에서 노출된다. 좌측 트리의 <strong>테이블</strong> 폴더 노드를 선택하면 우측에 모든 Table이 그리드 형태로 나열되며, 각 행에서 핵심 옵션을 빠르게 토글할 수 있다. 개별 Table 노드를 선택하면 일반 탭을 비롯한 상세 패널이 표시된다.</p>
+<p>Table 옵션은 두 화면에 표시된다. 좌측 트리의 <strong>테이블</strong> 폴더 노드를 선택하면 우측에 모든 Table이 그리드 형태로 나열되며, 각 행에서 핵심 옵션을 빠르게 토글할 수 있다. 개별 Table 노드를 선택하면 일반 탭을 비롯한 상세 패널이 표시된다.</p>
 <p><strong>테이블</strong></p>
 <img alt="_images/%EA%B0%9D%EC%B2%B4%EB%A7%A4%ED%95%91_%ED%85%8C%EC%9D%B4%EB%B8%94%EC%BB%AC%EB%9F%BC.png" src="_images/%EA%B0%9D%EC%B2%B4%EB%A7%A4%ED%95%91_%ED%85%8C%EC%9D%B4%EB%B8%94%EC%BB%AC%EB%9F%BC.png"/>
 <table class="docutils align-default">
@@ -411,7 +411,7 @@ UNIQUE / REVERSE / Column 순서 / 정렬 방향(ASC, DESC) 등 Index 정의의 
 </section>
 <section id="column">
 <h3>Column 옵션<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#column" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#column'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>Column 옵션은 두 곳에서 노출된다. Table 패널의 <strong>일반 탭</strong> 하단의 Column 그리드와, 트리에서 개별 Column 노드를 선택했을 때 표시되는 Column 매핑 패널이다.</p>
+<p>Column 옵션은 두 화면에 표시된다. Table 패널의 <strong>일반 탭</strong> 하단의 Column 그리드와, 트리에서 개별 Column 노드를 선택했을 때 표시되는 Column 매핑 패널이다.</p>
 <p><strong>Column 매핑 패널</strong></p>
 <p>개별 Column 노드를 선택하면 <strong>원본</strong> 영역과 <strong>대상</strong> 영역이 표시된다. 원본 영역은 읽기 전용이며, 대상 영역에서 대상 Column 정의를 조정한다.</p>
 <table class="docutils align-default">
@@ -459,7 +459,7 @@ UNIQUE / REVERSE / Column 순서 / 정렬 방향(ASC, DESC) 등 Index 정의의 
 <td><p><code class="docutils literal notranslate"><span class="pre">교체될값:교체후값;...</span></code> 형식으로 데이터 적재 시 값을 치환한다.</p></td>
 </tr>
 <tr class="row-odd"><td><p>컬럼 데이터 변환 클래스</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">jar</span> <span class="pre">파일명:클래스명</span></code> 형식으로 사용자 정의 데이터 변환 클래스를 지정한다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">JAR</span> <span class="pre">파일명:클래스명</span></code> 형식으로 사용자 정의 데이터 변환 클래스를 지정한다.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1195,7 +1195,7 @@ UNIQUE / REVERSE / Column 순서 / 정렬 방향(ASC, DESC) 등 Index 정의의 
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

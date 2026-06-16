@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -140,14 +140,14 @@
 <li><p>객체 매핑</p></li>
 <li><p>최종 확인</p></li>
 </ol>
-<p>객체별 매핑 옵션(Column, Primary Key, Foreign Key, Index 등)에 대해서는 5단계에서 트리 구조와 공통 동작만 다루며, 객체 유형별 상세는 <a class="reference internal" href="06_objects.html"><span class="doc">객체 매핑 상세</span></a>를 참고한다. 원본 데이터베이스 타입별 연결 필드는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>, 대상 출력 형식별 옵션은 <a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a>에서 자세히 다룬다.</p>
+<p>객체별 매핑 옵션(Column, Primary Key, Foreign Key, Index 등)에 대해서는 5단계에서 트리 구조와 공통 동작만 다루며, 객체 유형별 상세는 <a class="reference internal" href="06_objects.html"><span class="doc">객체 매핑 상세</span></a>를 참고한다. 원본 데이터베이스 타입별 연결 필드는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>, 대상 출력 형식별 옵션은 <a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a>에서 자세히 다룬다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>[<strong>시작하기</strong>] 버튼은 마지막 단계(6단계 — 최종 확인)에서만 활성화된다.</p>
+<p><strong>시작하기</strong> 버튼은 마지막 단계(6단계 — 최종 확인)에서만 활성화된다.</p>
 </div>
 <section id="id2">
 <h2>1단계 — 마이그레이션 유형 선택<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id2" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p>화면은 두 개의 그룹 — <strong>원본 유형</strong>과 <strong>대상 유형</strong> — 으로 나뉘며, 각 그룹에서는 하나만 선택할 수 있다.</p>
+<p>화면은 <strong>원본 유형</strong>과 <strong>대상 유형</strong> 두 그룹으로 나뉘며, 각 그룹에서는 하나만 선택할 수 있다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_1%EB%8B%A8%EA%B3%84_%EC%9C%A0%ED%98%95%EC%84%A0%ED%83%9D.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_1%EB%8B%A8%EA%B3%84_%EC%9C%A0%ED%98%95%EC%84%A0%ED%83%9D.png"/>
 <p><strong>원본 유형</strong></p>
 <p>CMT가 원본으로 지원하는 데이터베이스 종류는 다음과 같다. 각 항목의 연결 필드와 주의사항은 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>를 참고한다.</p>
@@ -220,7 +220,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>마지막에 선택한 조합은 저장되어 다음 실행 시 동일한 조합으로 시작한다.</p>
+<p>가장 최근에 선택한 조합이 저장되어, 다음 실행 시 그 조합이 기본값으로 선택된다.</p>
 </div>
 </section>
 <section id="id3">
@@ -263,7 +263,7 @@
 </tbody>
 </table>
 <p><strong>연결 정보 입력 폼</strong></p>
-<p>[<strong>신규</strong>] / [<strong>편집</strong>] / [<strong>복사</strong>]를 누르면 연결 정보 입력 폼이 열린다. 폼 구조는 모든 원본 데이터베이스 종류에 공통이며, 데이터베이스별 차이(기본 포트, 추가 파라미터, JDBC URL 패턴 등)는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>에서 다룬다.</p>
+<p><strong>신규</strong> / <strong>편집</strong> / <strong>복사</strong>를 누르면 연결 정보 입력 폼이 열린다. 폼 구조는 모든 원본 데이터베이스 종류에 공통이며, 데이터베이스별 차이(기본 포트, 추가 파라미터, JDBC URL 패턴 등)는 <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a>에서 다룬다.</p>
 <img alt="_images/%EC%83%88_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%97%B0%EA%B2%B0.png" src="_images/%EC%83%88_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%97%B0%EA%B2%B0.png"/>
 <table class="docutils align-default">
 <colgroup>
@@ -277,10 +277,10 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>데이터베이스 종류</strong></p></td>
-<td><p>1단계에서 선택한 데이터베이스 종류가 기본값. 해당 정보는 변경할 수 없다.</p></td>
+<td><p>1단계에서 선택한 데이터베이스 종류가 기본값으로 표시되며, 변경할 수 없다.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>JDBC 드라이버</strong></p></td>
-<td><p>[<strong>찾아보기…</strong>]로 <code class="docutils literal notranslate"><span class="pre">*.jar</span></code> 파일을 추가할 수 있다. 중복 등록 시 경고가 표시된다.</p></td>
+<td><p><strong>찾아보기…</strong>로 <code class="docutils literal notranslate"><span class="pre">*.jar</span></code> 파일을 추가할 수 있다. 중복 등록 시 경고가 표시된다.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>연결 이름</strong></p></td>
 <td><p>필수. 워크스페이스 내에서 유일해야 한다.</p></td>
@@ -298,7 +298,7 @@
 <td><p>원본 데이터베이스 종류에 따라 활성화된다(CUBRID, MSSQL).</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>사용자 이름 / 비밀번호</strong></p></td>
-<td><p>사용자 이름은 필수이며, 비밀번호는 데이터베이스 정책에 따라 선택이다.</p></td>
+<td><p>사용자 이름은 필수이며, 비밀번호 입력 여부는 데이터베이스 정책에 따라 선택 사항이다.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>JDBC 고급 설정…</strong></p></td>
 <td><p>사용자 정의 JDBC URL 패턴을 입력할 수 있는 다이얼로그를 연다.</p></td>
@@ -306,9 +306,9 @@
 </tbody>
 </table>
 <p><strong>테스트</strong></p>
-<p>폼 하단의 [<strong>테스트</strong>] 버튼은 입력한 정보로 실제 JDBC 접속을 시도한다. 성공 시 정보 메시지가, 실패 시 오류 원인의 상세 메시지를 보여 주는 다이얼로그가 표시된다.</p>
+<p>폼 하단의 <strong>테스트</strong> 버튼은 입력한 정보로 실제 JDBC 접속을 시도한다. 접속에 성공하면 정보 메시지가, 실패하면 오류 원인을 알려 주는 상세 메시지가 다이얼로그로 표시된다.</p>
 <p><strong>다음으로 이동 시 동작</strong></p>
-<p>[<strong>다음 &gt;</strong>]로 페이지를 떠날 때 다음이 일어난다.</p>
+<p><strong>다음 &gt;</strong>로 페이지를 떠날 때 다음이 일어난다.</p>
 <ol class="arabic simple">
 <li><p>선택한 연결의 스키마 카탈로그를 진행률 표시와 함께 가져온다.</p></li>
 <li><p>기존 스크립트에서 사용 중이던 스키마가 새 카탈로그에 없으면 재매핑 다이얼로그가 열린다.</p></li>
@@ -316,7 +316,7 @@
 </ol>
 </section>
 <section id="mysql-xml-dump">
-<h3>MYSQL XML dump 원본<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#mysql-xml-dump" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#mysql-xml-dump'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
+<h3>MySQL XML dump 원본<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#mysql-xml-dump" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#mysql-xml-dump'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>1단계에서 <strong>로컬 MYSQL XML dump 파일</strong>을 선택한 경우, 연결 목록 대신 XML 파일 입력 폼이 표시된다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_2%EB%8B%A8%EA%B3%84_MySQL_XML.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_2%EB%8B%A8%EA%B3%84_MySQL_XML.png"/>
 <table class="docutils align-default">
@@ -331,7 +331,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>XML 파일 경로</strong></p></td>
-<td><p>읽기 전용 Text + [<strong>찾아보기…</strong>]. <code class="docutils literal notranslate"><span class="pre">*.xml</span></code> 필터. 필수.</p></td>
+<td><p>읽기 전용 텍스트 입력란과 <strong>찾아보기…</strong> 버튼. <code class="docutils literal notranslate"><span class="pre">*.xml</span></code> 필터. 필수.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>XML 파일 문자집합</strong></p></td>
 <td><p>필수.</p></td>
@@ -339,7 +339,7 @@
 <tr class="row-even"><td><p><strong>시간대</strong></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">기본값</span></code> 선택.</p></td>
 </tr>
-<tr class="row-odd"><td><p>[<strong>분석하기</strong>]</p></td>
+<tr class="row-odd"><td><p><strong>분석하기</strong></p></td>
 <td><p>파일 선택 후 활성화된다. XML을 파싱하여 스키마를 추출한다.</p></td>
 </tr>
 </tbody>
@@ -404,13 +404,13 @@
 <tbody>
 <tr class="row-even"><td><p><strong>파일 경로</strong></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&lt;설치</span> <span class="pre">경로&gt;/output/</span></code></p></td>
-<td><p>[<strong>찾아보기…</strong>]로 디렉토리를 선택한다. 끝의 <code class="docutils literal notranslate"><span class="pre">/</span></code>는 자동으로 추가된다.</p></td>
+<td><p><strong>찾아보기…</strong>로 디렉토리를 선택한다. 끝의 <code class="docutils literal notranslate"><span class="pre">/</span></code>는 자동으로 추가된다.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>출력 파일의 Prefix</strong></p></td>
 <td><p>원본 데이터베이스 이름</p></td>
 <td><p>산출 파일명 앞에 붙는 문자열. 예: Prefix가 <code class="docutils literal notranslate"><span class="pre">oracle</span></code>이고 원본 스키마가 <code class="docutils literal notranslate"><span class="pre">HR</span></code>이면 <code class="docutils literal notranslate"><span class="pre">oracle_HR_class</span></code> 같은 파일명이 생성된다.</p></td>
 </tr>
-<tr class="row-even"><td><p>[<strong>CSV 설정</strong>]</p></td>
+<tr class="row-even"><td><p><strong>CSV 설정</strong></p></td>
 <td><p>—</p></td>
 <td><p>대상이 CSV일 때만 표시. separator, quote, escape 문자를 지정한다.</p></td>
 </tr>
@@ -444,7 +444,7 @@
 </tr>
 </tbody>
 </table>
-<p>대상 출력 형식별 디렉토리 구조와 파일 명명 규약은 <a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a>를 참고한다.</p>
+<p>대상 출력 형식별 디렉토리 구조와 파일 명명 규약은 <a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a>를 참고한다.</p>
 </section>
 </section>
 <section id="id7">
@@ -453,7 +453,7 @@
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_4%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_4%EB%8B%A8%EA%B3%84_%EC%98%A8%EB%9D%BC%EC%9D%B8.png"/>
 <p><strong>화면 구성</strong></p>
 <ul class="simple">
-<li><p>상단: [<strong>데이터베이스 오브젝트 업데이트</strong>] 버튼 — 원본 데이터베이스에서 객체들을 조회한다. 기존에 캐시된 객체가 있으면 초기화한 뒤 다시 조회한다.</p></li>
+<li><p>상단: <strong>데이터베이스 오브젝트 업데이트</strong> 버튼 — 원본 데이터베이스에서 객체들을 조회한다. 기존에 캐시된 객체가 있으면 초기화한 뒤 다시 조회한다.</p></li>
 <li><p>본문: 원본 스키마와 대상 스키마를 매핑하는 표.</p></li>
 </ul>
 <p><strong>매핑 표 컬럼</strong></p>
@@ -653,29 +653,29 @@
 </section>
 <section id="id11">
 <h3>성능 설정 다이얼로그<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id11" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id11'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>하단 툴바의 [<strong>고급 성능 설정…</strong>]을 누르면 성능 설정 다이얼로그가 열린다. <strong>추출 스레드 개수</strong>, <strong>테이블당 입력 스레드 개수</strong>, <strong>커밋 주기</strong>, <strong>테이블별 진행률 생략</strong>을 조정할 수 있으며, 원본/대상 조합에 따라 항목이 추가로 표시된다. 설정한 값은 작업별로 저장되어 환경 설정의 기본값을 덮어쓴다.</p>
+<p>하단 툴바의 <strong>고급 성능 설정…</strong>을 누르면 성능 설정 다이얼로그가 열린다. <strong>추출 스레드 개수</strong>, <strong>테이블당 입력 스레드 개수</strong>, <strong>커밋 주기</strong>, <strong>테이블별 진행률 생략</strong>을 조정할 수 있으며, 원본/대상 조합에 따라 항목이 추가로 표시된다. 설정한 값은 작업별로 저장되어 환경 설정의 기본값을 덮어쓴다.</p>
 <img alt="_images/%EC%84%B1%EB%8A%A5%EC%84%A4%EC%A0%95_%EB%8B%A4%EC%9D%B4%EC%96%BC%EB%A1%9C%EA%B7%B8.png" src="_images/%EC%84%B1%EB%8A%A5%EC%84%A4%EC%A0%95_%EB%8B%A4%EC%9D%B4%EC%96%BC%EB%A1%9C%EA%B7%B8.png"/>
-<p>[<strong>기본값</strong>] 버튼은 모든 값을 환경설정의 <strong>마이그레이션</strong> 페이지에 설정된 값으로 되돌린다.</p>
+<p><strong>기본값</strong> 버튼은 모든 값을 환경 설정의 <strong>마이그레이션</strong> 페이지에 설정된 값으로 되돌린다.</p>
 <p>각 항목의 의미·기본값·허용 범위는 <a class="reference internal" href="12_advanced.html"><span class="doc">고급 사용</span></a>의 성능 튜닝 절을 참고한다.</p>
 </section>
 <section id="ddl">
 <h3>DDL 미리보기<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#ddl" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#ddl'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>하단 툴바의 [<strong>DDL 미리보기</strong>] 토글 버튼을 누르면 요약 화면이 DDL 미리보기 화면으로 전환되어, 마이그레이션 시 생성될 객체들의 DDL을 보여 준다. 토글을 한 번 더 누르면 요약 화면으로 돌아간다.</p>
+<p>하단 툴바의 <strong>DDL 미리보기</strong> 토글 버튼을 누르면 요약 화면이 DDL 미리보기 화면으로 전환되어, 마이그레이션 시 생성될 객체들의 DDL을 보여 준다. 토글을 한 번 더 누르면 요약 화면으로 돌아간다.</p>
 <img alt="_images/%EB%A7%88%EB%B2%95%EC%82%AC_6%EB%8B%A8%EA%B3%84_DDL%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0.png" src="_images/%EB%A7%88%EB%B2%95%EC%82%AC_6%EB%8B%A8%EA%B3%84_DDL%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0.png"/>
 </section>
 <section id="id12">
 <h3>스크립트 저장 / 내보내기<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id12" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id12'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>하단 툴바의 스크립트 관련 버튼은 세 종류이다.</p>
 <ul class="simple">
-<li><p>[<strong>스크립트 내보내기</strong>] — 마이그레이션 설정을 XML 파일로 저장하거나 SSH 원격으로 업로드한다.</p></li>
-<li><p>[<strong>현재 스크립트에 저장</strong>] — 기존 스크립트에서 마법사를 시작한 경우에만 활성화된다. 동일한 파일에 변경 사항을 덮어쓴다.</p></li>
-<li><p>[<strong>새로운 스크립트로 저장</strong>] — 새 스크립트 이름을 입력하면 워크스페이스에 새 스크립트로 저장된다.</p></li>
+<li><p><strong>스크립트 내보내기</strong> — 마이그레이션 설정을 XML 파일로 저장하거나 SSH 원격으로 업로드한다.</p></li>
+<li><p><strong>현재 스크립트에 저장</strong> — 기존 스크립트에서 마법사를 시작한 경우에만 활성화된다. 동일한 파일에 변경 사항을 덮어쓴다.</p></li>
+<li><p><strong>새로운 스크립트로 저장</strong> — 새 스크립트 이름을 입력하면 워크스페이스에 새 스크립트로 저장된다.</p></li>
 </ul>
-<p>체크박스 [<strong>Save Source Catalog</strong>]를 켜면 원본 데이터베이스의 카탈로그가 스크립트 XML에 함께 저장된다. 다음에 동일한 스크립트로 다시 실행할 때 원본 데이터베이스에 접속하지 않고도 객체 매핑을 복원할 수 있다.</p>
+<p>체크박스 <strong>Save Source Catalog</strong>를 켜면 원본 데이터베이스의 카탈로그가 스크립트 XML에 함께 저장된다. 다음에 동일한 스크립트로 다시 실행할 때 원본 데이터베이스에 접속하지 않고도 객체 매핑을 복원할 수 있다.</p>
 </section>
 <section id="id13">
 <h3>실행 또는 예약<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id13" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id13'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
-<p>[<strong>시작하기</strong>]를 누르면 다음 순서로 동작한다.</p>
+<p><strong>시작하기</strong>를 누르면 다음 순서로 동작한다.</p>
 <ol class="arabic simple">
 <li><p>메모리 위험을 감지하면 경고 다이얼로그가 표시된다.</p></li>
 <li><p>실행 모드 다이얼로그가 열린다.</p></li>
@@ -683,11 +683,11 @@
 <p>실행 모드 다이얼로그는 다음 항목으로 구성된다.</p>
 <ul class="simple">
 <li><p><strong>Migration Name</strong> — 현재 설정 이름이 채워져 있다. 워크스페이스 내에서 유일한 이름이어야 한다.</p></li>
-<li><p>[<strong>바로 시작하기</strong>] — 즉시 마이그레이션을 시작하고 진행 화면을 연다.</p></li>
-<li><p>[<strong>예약하기</strong>] — 스크립트를 저장한 뒤 예약 다이얼로그를 연다.</p></li>
-<li><p>[<strong>취소</strong>] — 닫고 6단계로 돌아간다.</p></li>
+<li><p><strong>바로 시작하기</strong> — 즉시 마이그레이션을 시작하고 진행 화면을 연다.</p></li>
+<li><p><strong>예약하기</strong> — 스크립트를 저장한 뒤 예약 다이얼로그를 연다.</p></li>
+<li><p><strong>취소</strong> — 닫고 6단계로 돌아간다.</p></li>
 </ul>
-<p>[<strong>예약하기</strong>]를 누르면 예약 다이얼로그가 열린다. 다음 세 가지 모드 중 하나를 선택한다.</p>
+<p><strong>예약하기</strong>를 누르면 예약 다이얼로그가 열린다. 다음 세 가지 모드 중 하나를 선택한다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 24.0%"/>
@@ -719,13 +719,13 @@
 </section>
 <section id="id14">
 <h2>마이그레이션 실행 및 모니터링<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id14" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id14'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
-<p>[<strong>바로 시작하기</strong>]를 누르면 작업 영역에 진행 화면이 열리고 실제 마이그레이션이 시작된다.</p>
+<p><strong>바로 시작하기</strong>를 누르면 작업 영역에 진행 화면이 열리고 실제 마이그레이션이 시작된다.</p>
 <img alt="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EC%A7%84%ED%96%89.png" src="_images/%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98_%EC%A7%84%ED%96%89.png"/>
 <section id="id15">
 <h3>화면 구성<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id15" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id15'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>진행 화면은 두 영역으로 구성된다.</p>
 <ul class="simple">
-<li><p><strong>상단</strong> — 전체 진행률 바와 [<strong>중단</strong>] / [<strong>보고서 조회</strong>] 버튼, Table별 진행 표.</p></li>
+<li><p><strong>상단</strong> — 전체 진행률 바와 <strong>중단</strong> / <strong>보고서 조회</strong> 버튼, Table별 진행 표.</p></li>
 <li><p><strong>하단</strong> — 총 경과 시간, 누적 적재 레코드 수, 로그 패널 숨기기·지우기 버튼, 검은색 배경의 로그 패널.</p></li>
 </ul>
 </section>
@@ -767,16 +767,16 @@
 <section id="id16">
 <h3>상단 컨트롤<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id16" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id16'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <ul class="simple">
-<li><p>[<strong>중단</strong>] — 진행 중인 마이그레이션을 즉시 중단한다. 누르면 확인 다이얼로그가 표시된다.</p></li>
-<li><p>[<strong>보고서 조회</strong>] — 마이그레이션이 종료된 후에 활성화된다. 결과 보고서 화면을 연다.</p></li>
+<li><p><strong>중단</strong> — 진행 중인 마이그레이션을 즉시 중단한다. 누르면 확인 다이얼로그가 표시된다.</p></li>
+<li><p><strong>보고서 조회</strong> — 마이그레이션이 종료된 후에 활성화된다. 결과 보고서 화면을 연다.</p></li>
 </ul>
 </section>
 <section id="id17">
 <h3>로그 패널<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id17" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id17'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <ul class="simple">
 <li><p>로그 패널은 검은 배경의 읽기 전용 영역으로, 진행 메시지·경고·오류가 실시간으로 추가된다.</p></li>
-<li><p>[<strong>메시지 숨기기 / 메시지 보이기</strong>] — 로그 패널을 접거나 펼친다.</p></li>
-<li><p>[<strong>메시지 초기화</strong>] — 로그 내용을 비운다.</p></li>
+<li><p><strong>메시지 숨기기 / 메시지 보이기</strong> — 로그 패널을 접거나 펼친다.</p></li>
+<li><p><strong>메시지 초기화</strong> — 로그 내용을 비운다.</p></li>
 <li><p><strong>총 소요 시간</strong> — 총 경과 시간이 파란색으로 표시된다.</p></li>
 <li><p><strong>총 레코드 입력</strong> — 누적 적재 행 수가 파란색으로 표시된다.</p></li>
 </ul>
@@ -785,13 +785,13 @@
 <h3>종료 시 동작<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id18" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id18'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <ul class="simple">
 <li><p>마이그레이션이 정상적으로 종료되면 진행 화면 탭의 아이콘이 진행 표시에서 녹색 체크 표시로 바뀐다.</p></li>
-<li><p>사용자가 [<strong>바로 시작하기</strong>]로 직접 시작한 경우에는 보고서를 바로 열지 묻는 다이얼로그가 표시된다. 예약으로 시작된 경우에는 묻지 않고 보고서를 조용히 저장한다.</p></li>
+<li><p>사용자가 <strong>바로 시작하기</strong>로 직접 시작한 경우에는 보고서를 바로 열지 묻는 다이얼로그가 표시된다. 예약으로 시작된 경우에는 묻지 않고 보고서를 조용히 저장한다.</p></li>
 </ul>
 </section>
 <section id="id19">
 <h3>중단과 재시작<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id19" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id19'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <ul class="simple">
-<li><p>마이그레이션이 진행 중일 때는 진행 화면 탭을 닫을 수 없다. 먼저 [<strong>중단</strong>]으로 중단해야 한다.</p></li>
+<li><p>마이그레이션이 진행 중일 때는 진행 화면 탭을 닫을 수 없다. 먼저 <strong>중단</strong>으로 중단해야 한다.</p></li>
 <li><p>중단된 마이그레이션은 <code class="docutils literal notranslate"><span class="pre">마이그레이션</span> <span class="pre">&gt;</span> <span class="pre">마이그레이션</span> <span class="pre">이력</span></code> 화면에서 <strong>마이그레이션 재실행…</strong> 버튼(또는 컨텍스트 메뉴의 <strong>마법사 시작하기</strong>)으로 재시작할 수 있다. 이전 설정이 그대로 복원되므로 옵션을 다시 입력할 필요가 없다.</p></li>
 </ul>
 </section>
@@ -801,7 +801,7 @@
 <ul class="simple">
 <li><p>객체별 매핑 옵션 — <a class="reference internal" href="06_objects.html"><span class="doc">객체 매핑 상세</span></a></p></li>
 <li><p>원본 데이터베이스 타입별 추가 필드 — <a class="reference internal" href="07_sourcedb.html"><span class="doc">원본 데이터베이스 가이드</span></a></p></li>
-<li><p>대상 출력 형식별 옵션 — <a class="reference internal" href="08_target.html"><span class="doc">대상 타입 가이드</span></a></p></li>
+<li><p>대상 출력 형식별 옵션 — <a class="reference internal" href="08_target.html"><span class="doc">대상 유형 가이드</span></a></p></li>
 <li><p>마이그레이션 결과 보고서 — <a class="reference internal" href="10_report.html"><span class="doc">마이그레이션 보고서 &amp; 출력 파일</span></a></p></li>
 <li><p>명령행에서 동일 작업 실행 — <a class="reference internal" href="09_console.html"><span class="doc">콘솔(CLI) 가이드</span></a></p></li>
 </ul>
@@ -830,7 +830,7 @@
 <li><a :data-current="activeSection === '#id2'" class="reference internal" href="#id2">1단계 — 마이그레이션 유형 선택</a></li>
 <li><a :data-current="activeSection === '#id3'" class="reference internal" href="#id3">2단계 — 원본 데이터베이스 선택</a><ul>
 <li><a :data-current="activeSection === '#id4'" class="reference internal" href="#id4">온라인 데이터베이스 원본</a></li>
-<li><a :data-current="activeSection === '#mysql-xml-dump'" class="reference internal" href="#mysql-xml-dump">MYSQL XML dump 원본</a></li>
+<li><a :data-current="activeSection === '#mysql-xml-dump'" class="reference internal" href="#mysql-xml-dump">MySQL XML dump 원본</a></li>
 </ul>
 </li>
 <li><a :data-current="activeSection === '#id5'" class="reference internal" href="#id5">3단계 — 대상 선택</a><ul>
@@ -866,7 +866,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>

@@ -27,7 +27,7 @@
 <link href="_static/pygments.css?v=251d11f7" rel="stylesheet" type="text/css"/>
 <link href="_static/pygments_dark.css" id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
-<link href="_static/style.css?v=7a6e8155" rel="stylesheet" type="text/css"/>
+<link href="_static/style.css?v=852e06a0" rel="stylesheet" type="text/css"/>
 <link href="_static/simplepdf-fixes.css?v=542c9095" rel="stylesheet" type="text/css"/>
 <link href="_static/logo_only.png" rel="icon"/>
 <link href="search.html" rel="search" title="검색"/>
@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_wizard.html">마이그레이션 마법사</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_objects.html">객체 매핑 상세</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_sourcedb.html">원본 데이터베이스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 타입 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_target.html">대상 유형 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_console.html">콘솔(CLI) 가이드</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_report.html">마이그레이션 보고서 &amp; 출력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_config.html">환경 설정</a></li>
@@ -158,7 +158,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>새 마이그레이션</strong></p></td>
-<td><p>새 마이그레이션 마법사를 시작한다. 자세한 흐름은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a> 참고</p></td>
+<td><p>새 마이그레이션 마법사를 시작한다. 자세한 흐름은 <a class="reference internal" href="05_wizard.html"><span class="doc">마이그레이션 마법사</span></a>를 참고한다.</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+N</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>마이그레이션 이력</strong></p></td>
@@ -166,7 +166,7 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+H</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>기본 설정</strong></p></td>
-<td><p>환경설정 다이얼로그를 연다. 자세한 내용은 <a class="reference internal" href="11_config.html"><span class="doc">환경 설정</span></a> 참고</p></td>
+<td><p>환경 설정 다이얼로그를 연다. 자세한 내용은 <a class="reference internal" href="11_config.html"><span class="doc">환경 설정</span></a>를 참고한다.</p></td>
 <td><p>—</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>종료</strong></p></td>
@@ -197,7 +197,7 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>최대화</strong></p></td>
-<td><p>메인 창을 최대화하거나 원복한다.</p></td>
+<td><p>메인 창을 최대화하거나 원래 크기로 복원한다.</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+M</span></code></p></td>
 </tr>
 </tbody>
@@ -221,7 +221,7 @@
 <td><p>기본 브라우저로 온라인 매뉴얼을 연다.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>새 버전 체크</strong></p></td>
-<td><p>새 버전이 있는지 즉시 확인한다. 자동 확인 여부는 환경설정의 <strong>자동으로 새로운 업데이트를 검색하고 시작할 때 알림</strong> 옵션으로 제어한다.</p></td>
+<td><p>새 버전이 있는지 즉시 확인한다. 자동 확인 여부는 환경 설정의 <strong>자동으로 새로운 업데이트를 검색하고 시작할 때 알림</strong> 옵션으로 제어한다.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>CUBRID Migration Toolkit 정보</strong></p></td>
 <td><p>버전, 빌드 정보, 라이선스 정보 다이얼로그를 표시한다.</p></td>
@@ -252,7 +252,7 @@
 <tr class="row-even"><td><p>1</p></td>
 <td><p><strong>새 마이그레이션</strong></p></td>
 <td><p>버튼</p></td>
-<td><p>새 마이그레이션 마법사를 연다 (메뉴의 동명 항목과 동일).</p></td>
+<td><p>새 마이그레이션 마법사를 연다(메뉴의 동명 항목과 동일).</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p><strong>마이그레이션 이력</strong></p></td>
@@ -262,12 +262,12 @@
 <tr class="row-even"><td><p>3</p></td>
 <td><p><strong>마이그레이션 스크립트</strong></p></td>
 <td><p>드롭다운</p></td>
-<td><p>스크립트 관련 액션을 모아 놓은 드롭다운 메뉴. 아래 <em>컨텍스트 메뉴</em> 절의 항목과 동일하다.</p></td>
+<td><p>스크립트 관련 작업을 모아 놓은 드롭다운 메뉴이다. 항목은 아래 <em>컨텍스트 메뉴</em> 절과 동일하다.</p></td>
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
 <td><p><strong>기본 설정</strong></p></td>
 <td><p>버튼</p></td>
-<td><p>환경설정 다이얼로그를 연다.</p></td>
+<td><p>환경 설정 다이얼로그를 연다.</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p><strong>온라인 도움말</strong></p></td>
@@ -280,7 +280,7 @@
 <section id="id4">
 <h2>마이그레이션 스크립트 탐색기<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id4" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id4'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h2>
 <p>좌측의 <strong>스크립트</strong> 영역은 워크스페이스에 저장된 마이그레이션 스크립트(<code class="docutils literal notranslate"><span class="pre">.xml</span></code>)를 트리 구조로 보여준다. 예약 여부에 따라 스크립트 노드의 아이콘이 다르게 표시된다(예약 없음 / 예약됨).</p>
-<p><strong>스크립트</strong> 패널 제목줄의 뷰 메뉴(드롭다운 메뉴)의 <strong>최상위 요소</strong> 하위 메뉴에서 <strong>목록</strong>(기본값) 또는 <strong>그룹</strong>을 선택해 표시 모드를 전환하고, <strong>그룹 설정</strong>으로 그룹 설정 다이얼로그를 연다.</p>
+<p><strong>스크립트</strong> 패널 제목 표시줄에서 뷰 메뉴를 열고, <strong>최상위 요소</strong> 하위 메뉴에서 <strong>목록</strong>(기본값) 또는 <strong>그룹</strong>을 선택해 표시 모드를 전환한다. <strong>그룹 설정</strong>으로는 그룹 설정 다이얼로그를 연다.</p>
 <section id="id5">
 <h3>컨텍스트 메뉴<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#id5" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id5'"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h3>
 <p>스크립트 노드를 우클릭하면 다음 액션이 표시된다.</p>
@@ -297,7 +297,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>마법사 시작하기</strong></p></td>
-<td><p>선택한 스크립트로 마이그레이션 마법사를 연다. 노드 더블클릭과 동일하다.</p></td>
+<td><p>선택한 스크립트로 마이그레이션 마법사를 연다. 노드를 더블클릭할 때와 동일하게 동작한다.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>예약하기</strong></p></td>
 <td><p>예약 다이얼로그를 연다. 아래 <em>마이그레이션 예약 설정</em> 절 참고.</p></td>
@@ -502,7 +502,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>보고서 열기</strong></p></td>
-<td><p>보고서 화면을 연다. 행 더블클릭과 동일하다.</p></td>
+<td><p>보고서 화면을 연다. 행을 더블클릭할 때와 동일하게 동작한다.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>마법사 시작하기</strong></p></td>
 <td><p>저장된 스크립트로 마법사를 다시 연다.</p></td>
@@ -544,7 +544,7 @@
 <tr class="row-even"><td><p>창 최소화</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>창 최대화/원복</p></td>
+<tr class="row-odd"><td><p>창 최대화/복원</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+M</span></code></p></td>
 </tr>
 </tbody>
@@ -646,7 +646,7 @@
 </div><footer class="py-6 border-t border-border md:py-0">
 <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 12, 2026. </p>
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2016, CUBRID Corporation Last updated: 6월 16, 2026. </p>
 </div>
 </div>
 </footer>
